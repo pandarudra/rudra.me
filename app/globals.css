@@ -1,5 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=BBH+Bogle&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
+
+.bbh-bogle-regular {
+  font-family: "BBH Bogle", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 @custom-variant dark (&:is(.dark *));
 

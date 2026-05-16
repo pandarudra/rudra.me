@@ -6,7 +6,7 @@ import OnekoCat from "@/components/custom/OnekoCat";
 import { useCursor } from "@/hooks/use-cursor";
 
 const Landing = () => {
-  const [showPreLanding, setShowPreLanding] = useState(true);
+  const [showPreLanding, setShowPreLanding] = useState(false);
   useCursor("/icons/cursor.png", 16);
 
   useEffect(() => {

@@ -78,7 +78,7 @@ export const HeroSection = () => {
                 </MagnetButton>
               </a>
               <a
-                href="#projects"
+                href="#project"
                 className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-6 py-4 font-medium text-foreground shadow-sm backdrop-blur-md transition-colors hover:bg-secondary/40"
               >
                 Explore Projects

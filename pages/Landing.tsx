@@ -4,6 +4,7 @@ import PreLanding from "./PreLanding";
 import { useState, useEffect } from "react";
 import OnekoCat from "@/components/custom/OnekoCat";
 import { useCursor } from "@/hooks/use-cursor";
+import MainPage from "@/components/custom/MainPage";
 
 const Landing = () => {
   const [showPreLanding, setShowPreLanding] = useState(false);
@@ -39,6 +40,7 @@ const Landing = () => {
         speedMax={1.6}
         speedScale={1}
       />
+      <MainPage />
     </div>
   );
 };

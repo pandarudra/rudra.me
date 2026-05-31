@@ -32,7 +32,7 @@ const experiences = [
 
 export const ExperienceSection = () => {
   return (
-    <section className="bg-background py-24 sm:py-32 px-6 border-t border-border/50">
+    <section id="experience" className="bg-background py-24 sm:py-32 px-6 border-t border-border/50">
       <div className="max-w-4xl mx-auto">
         <FadeIn>
           <div className="flex items-center gap-4 mb-16">

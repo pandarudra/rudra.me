@@ -22,7 +22,7 @@ const services = [
 
 export const ServicesSection = () => {
   return (
-    <section className="bg-secondary/30 rounded-t-[40px] sm:rounded-t-[60px] py-24 sm:py-32 px-6">
+    <section id="services" className="bg-secondary/30 rounded-t-[40px] sm:rounded-t-[60px] py-24 sm:py-32 px-6">
       <div className="max-w-5xl mx-auto">
         <FadeIn>
           <h2 className="text-4xl sm:text-6xl font-black text-center mb-20">Services</h2>

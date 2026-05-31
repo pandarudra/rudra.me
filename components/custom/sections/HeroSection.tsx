@@ -19,7 +19,7 @@ const focusPoints = [
 
 export const HeroSection = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-background py-24 sm:py-28">
+    <section className="relative w-full min-h-screen flex flex-col pt-20 pb-16 sm:pt-24 sm:pb-24 overflow-hidden bg-background">
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none opacity-70"
@@ -78,7 +78,18 @@ export const HeroSection = () => {
                 </MagnetButton>
               </a>
               <a
-                href="#project"
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById("projects");
+                  if (element) {
+                    const headerOffset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    window.history.pushState(null, "", "#projects");
+                  }
+                }}
                 className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-6 py-4 font-medium text-foreground shadow-sm backdrop-blur-md transition-colors hover:bg-secondary/40"
               >
                 Explore Projects
@@ -129,7 +140,7 @@ export const HeroSection = () => {
             </FadeIn>
           </div>
 
-          <FadeIn y={26} delay={0.28} className="relative">
+          <FadeIn y={26} delay={0.28} className="relative lg:-mt-12">
             <div className="relative overflow-hidden rounded-[36px] border border-border/60 bg-background/80 p-5 shadow-[0_30px_80px_rgba(0,0,0,0.14)] backdrop-blur-xl sm:p-6">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.14),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.14),transparent_32%)]" />
 

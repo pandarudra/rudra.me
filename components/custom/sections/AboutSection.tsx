@@ -6,7 +6,7 @@ import { Heart, Sparkles, Coffee, Star } from "lucide-react";
 
 export const AboutSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-32 bg-background overflow-hidden">
+    <section id="about" className="relative min-h-screen flex items-center justify-center px-6 py-32 bg-background overflow-hidden">
       {/* Floating Elements (Cute Minimalist style) */}
       <Floating3D className="absolute top-20 left-[10%] text-sky-400 opacity-60" delay={0.2} duration={4}>
         <Star className="w-12 h-12 sm:w-16 sm:h-16" />

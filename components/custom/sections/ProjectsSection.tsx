@@ -206,7 +206,7 @@ const ProjectCard = ({
 export const ProjectsSection = () => {
   return (
     <section
-      id="project"
+      id="projects"
       className="bg-background relative py-20 px-6 -mt-10 z-10 rounded-t-[40px] sm:rounded-t-[60px]"
     >
       <FadeIn>

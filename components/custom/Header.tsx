@@ -49,6 +49,9 @@ export const Header = () => {
           <a href="#projects" onClick={(e) => handleScroll(e, 'projects')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
             Projects
           </a>
+          <a href="#certificates" onClick={(e) => handleScroll(e, 'certificates')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+            Certificates
+          </a>
         </nav>
 
         {/* CTA */}

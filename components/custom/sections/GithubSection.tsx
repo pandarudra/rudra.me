@@ -51,24 +51,24 @@ export const GithubSection = () => {
   const calendarTheme = mounted && (resolvedTheme || theme) === "light" ? "light" : "dark";
 
   return (
-    <section className="bg-background py-24 px-6 relative z-20 border-t border-border/50">
+    <section className="bg-white dark:bg-[#121311] py-24 px-6 relative z-20 border-t border-[#0e0f0c]/5 dark:border-white/5 transition-colors duration-300">
       <div className="max-w-5xl mx-auto flex flex-col items-center">
         <FadeIn>
           <div className="flex items-center gap-3 justify-center mb-6">
-            <h2 className="text-4xl sm:text-6xl font-black text-center">Open Source</h2>
+            <h2 className="text-5xl sm:text-7xl font-black text-[#0e0f0c] dark:text-white tracking-tight text-center">Open Source</h2>
           </div>
-          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
+          <p className="text-[#454745] dark:text-[#868685] text-lg font-medium text-center max-w-2xl mx-auto mb-10">
             A visual record of my engineering output. Active contributor across personal projects and open-source.
           </p>
         </FadeIn>
 
         <FadeIn delay={0.2} className="w-full flex flex-col items-center">
           <div className="mb-8 flex items-center gap-3">
-            <Calendar className="w-5 h-5 text-muted-foreground" />
+            <Calendar className="w-5 h-5 text-[#9fe870]" />
             <select
               value={year}
               onChange={(e) => setYear(e.target.value === "last" ? "last" : Number(e.target.value))}
-              className="px-4 py-2 bg-secondary/30 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-sm font-medium appearance-none min-w-[120px] text-center cursor-pointer"
+              className="px-5 py-2.5 bg-[#e8ebe6] dark:bg-[#0e0f0c] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] focus:outline-none focus:ring-2 focus:ring-[#9fe870]/50 text-[14px] font-bold text-[#0e0f0c] dark:text-white appearance-none min-w-[130px] text-center cursor-pointer transition-colors"
             >
               <option value="last">Last Year</option>
               <option value="2025">2025</option>
@@ -93,18 +93,18 @@ export const GithubSection = () => {
               }}
               className="shrink-0 flex justify-center transition-transform duration-300 ease-out"
             >
-              <div className="p-8 rounded-3xl bg-secondary/10 border border-border/50 w-full flex justify-center">
+              <div className="p-8 sm:p-10 rounded-[24px] bg-[#e8ebe6] dark:bg-[#0e0f0c] border border-[#0e0f0c]/5 dark:border-white/5 w-full flex justify-center shadow-sm">
                 {mounted ? (
                   <GitHubCalendar
                     username="pandarudra"
                     colorScheme={calendarTheme}
                     year={year}
-                    blockSize={14}
+                    blockSize={15}
                     blockMargin={6}
                     fontSize={14}
                   />
                 ) : (
-                  <div className="w-[1080px] h-[150px] animate-pulse bg-muted/20 rounded-xl" />
+                  <div className="w-[1080px] h-[150px] animate-pulse bg-black/5 dark:bg-white/5 rounded-[24px]" />
                 )}
               </div>
             </div>
@@ -114,3 +114,4 @@ export const GithubSection = () => {
     </section>
   );
 };
+

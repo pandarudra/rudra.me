@@ -1,0 +1,1315 @@
+─────────────────────────────────────────────────────────────────────────────────────────────────────
+Using gpt-4o model with API key from environment.
+Aider v0.86.2
+Main model: gpt-4o with diff edit format
+Weak model: gpt-4o-mini
+Git repo: .git with 131 files
+Repo-map: using 4096 tokens, auto refresh
+Here are summaries of some files present in my git repository.
+Do not propose changes to these files, treat them as *read-only*.
+If you need to edit any of these files, ask me to *add them to the chat* first.
+
+app/api/send/route.ts:
+⋮
+│export async function POST(req: NextRequest) {
+│  try {
+│    if (!resend_key) {
+│      return Response.json(
+│        { error: "RESEND_API_KEY is not configured." },
+│        { status: 500 },
+│      );
+│    }
+│
+│    if (!my_email) {
+⋮
+
+app/layout.tsx:
+⋮
+│export default function RootLayout({
+│  children,
+⋮
+
+components/FuzzyText.jsx:
+⋮
+│const FuzzyText = ({
+│  children,
+│  fontSize = "clamp(2rem, 10vw, 10rem)",
+│  fontWeight = 900,
+│  fontFamily = "bbh-bogle-regular",
+│  color = "#fff",
+│  enableHover = true,
+│  baseIntensity = 0.18,
+│  hoverIntensity = 0.5,
+│}) => {
+⋮
+│  useEffect(() => {
+│    let animationFrameId;
+│    let isCancelled = false;
+│    const canvas = canvasRef.current;
+│    if (!canvas) return;
+│
+│    const init = async () => {
+│      if (document.fonts?.ready) {
+│        await document.fonts.ready;
+│      }
+│      if (isCancelled) return;
+│
+│      const ctx = canvas.getContext("2d");
+│      if (!ctx) return;
+│
+│      let computedFontFamily = fontFamily;
+⋮
+│      const isInsideTextArea = (x, y) => {
+│        return (
+│          x >= interactiveLeft &&
+│          x <= interactiveRight &&
+│          y >= interactiveTop &&
+│          y <= interactiveBottom
+│        );
+⋮
+
+components/custom/OnekoCat.tsx:
+⋮
+│export default function OnekoCat() {
+│  if (!catConfig.enabled) {
+│    return null;
+│  }
+│
+│  return (
+│    <Script
+│      src="/oneko/oneko.js"
+│      data-cat="/oneko/oneko.gif"
+│      strategy="afterInteractive"
+⋮
+
+components/custom/sections/HeroSection.tsx:
+⋮
+│              <a
+│                href="#projects"
+│                onClick={(e) => {
+│                  e.preventDefault();
+│                  const element = document.getElementById("projects");
+│                  if (element) {
+│                    const headerOffset = 80;
+│                    const elementPosition = element.getBoundingClientRect().top;
+│                    const offsetPosition =
+│                      elementPosition + window.pageYOffset - headerOffset;
+│                    window.scrollTo({
+│                      top: offsetPosition,
+│                      behavior: "smooth",
+⋮
+
+components/custom/sections/ProjectsSection.tsx:
+⋮
+│type ProjectType = {
+│  num: string;
+│  category: string;
+│  name: string;
+│  image: string;
+│  github: string;
+│  live: string;
+│  desc?: string;
+⋮
+
+components/custom/ui/AnimatedText.tsx:
+⋮
+│interface AnimatedTextProps {
+│  text: string;
+│  className?: string;
+⋮
+
+components/custom/ui/Buttons.tsx:
+⋮
+│interface MagnetButtonProps {
+│  children: ReactNode;
+│  className?: string;
+│  onClick?: () => void;
+⋮
+
+components/custom/ui/FadeIn.tsx:
+⋮
+│interface FadeInProps {
+│  children: ReactNode;
+│  delay?: number;
+│  duration?: number;
+│  x?: number;
+│  y?: number;
+│  className?: string;
+│  once?: boolean;
+⋮
+
+components/custom/ui/Floating3D.tsx:
+⋮
+│interface Floating3DProps {
+│  children: ReactNode;
+│  delay?: number;
+│  duration?: number;
+│  yOffset?: number;
+│  className?: string;
+⋮
+
+components/custom/ui/Footer.tsx:
+⋮
+│            <input
+│              type="email"
+│              name="email"
+│              placeholder="Your email address"
+│              value={email}
+│              onChange={(e) => setEmail(e.target.value)}
+│              required
+⋮
+│                <button
+│                  onClick={() => setTheme("light")}
+│                  className={`p-3 rounded-xl transition-all ${theme === "light" ? "bg-background sh
+│                  aria-label="Light Theme"
+⋮
+│                <button
+│                  onClick={() => setTheme("dark")}
+│                  className={`p-3 rounded-xl transition-all ${theme === "dark" ? "bg-background sha
+│                  aria-label="Dark Theme"
+⋮
+│                <button
+│                  onClick={() => setTheme("system")}
+│                  className={`p-3 rounded-xl transition-all ${theme === "system" ? "bg-background s
+│                  aria-label="System Theme"
+⋮
+
+components/custom/ui/email-templete.tsx:
+⋮
+│interface EmailTemplateProps {
+│  email: string;
+│  message: string;
+⋮
+
+components/theme-provider.tsx:
+⋮
+│export function ThemeProvider({
+│  children,
+│  ...props
+⋮
+
+components/ui/accordion.tsx:
+⋮
+│function Accordion({
+│  ...props
+⋮
+│function AccordionItem({
+│  className,
+│  ...props
+⋮
+│function AccordionTrigger({
+│  className,
+│  children,
+│  ...props
+⋮
+
+components/ui/alert-dialog.tsx:
+⋮
+│function AlertDialog({
+│  ...props
+⋮
+│  return (
+│    <AlertDialogPrimitive.Overlay
+│      data-slot="alert-dialog-overlay"
+│      className={cn(
+│        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│        data-slot="alert-dialog-content"
+│        className={cn(
+│          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=c
+│          className
+⋮
+│  return (
+│    <div
+│      data-slot="alert-dialog-footer"
+│      className={cn(
+│        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│function AlertDialogDescription({
+│  className,
+│  ...props
+⋮
+│    <AlertDialogPrimitive.Action
+│      className={cn(buttonVariants(), className)}
+│      {...props}
+⋮
+│    <AlertDialogPrimitive.Cancel
+│      className={cn(buttonVariants({ variant: "outline" }), className)}
+│      {...props}
+⋮
+
+components/ui/aspect-ratio.tsx:
+⋮
+│function AspectRatio({
+│  ...props
+⋮
+
+components/ui/avatar.tsx:
+⋮
+│function AvatarImage({
+│  className,
+│  ...props
+⋮
+│function AvatarFallback({
+│  className,
+│  ...props
+⋮
+
+components/ui/breadcrumb.tsx:
+⋮
+│function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
+│  return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />
+⋮
+│function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
+│  return (
+│    <ol
+│      data-slot="breadcrumb-list"
+│      className={cn(
+│        "text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
+│        className
+│      )}
+│      {...props}
+│    />
+⋮
+│function BreadcrumbLink({
+│  asChild,
+│  className,
+│  ...props
+⋮
+│function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
+│  return (
+│    <span
+│      data-slot="breadcrumb-page"
+│      role="link"
+│      aria-disabled="true"
+│      aria-current="page"
+│      className={cn("text-foreground font-normal", className)}
+│      {...props}
+│    />
+⋮
+│function BreadcrumbSeparator({
+│  children,
+│  className,
+│  ...props
+⋮
+│function BreadcrumbEllipsis({
+│  className,
+│  ...props
+⋮
+
+components/ui/button-group.tsx:
+⋮
+│function ButtonGroup({
+│  className,
+│  orientation,
+│  ...props
+⋮
+
+components/ui/button.tsx:
+⋮
+│      className={cn(buttonVariants({ variant, size, className }))}
+│      {...props}
+⋮
+
+components/ui/calendar.tsx:
+⋮
+│function Calendar({
+│  className,
+│  classNames,
+│  showOutsideDays = true,
+│  captionLayout = "label",
+│  buttonVariant = "ghost",
+│  formatters,
+│  components,
+│  ...props
+⋮
+
+components/ui/card.tsx:
+⋮
+│function Card({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="card"
+│      className={cn(
+│        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+│        className
+│      )}
+│      {...props}
+│    />
+⋮
+│function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+⋮
+│function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="card-description"
+│      className={cn("text-muted-foreground text-sm", className)}
+│      {...props}
+│    />
+│  )
+⋮
+│function CardAction({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="card-action"
+│      className={cn(
+│        "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
+│        className
+│      )}
+│      {...props}
+│    />
+⋮
+│function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="card-footer"
+│      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+│      {...props}
+│    />
+│  )
+⋮
+
+components/ui/carousel.tsx:
+⋮
+│type CarouselApi = UseEmblaCarouselType[1]
+│type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
+│type CarouselOptions = UseCarouselParameters[0]
+│type CarouselPlugin = UseCarouselParameters[1]
+│
+⋮
+
+components/ui/chart.tsx:
+⋮
+│export type ChartConfig = {
+│  [k in string]: {
+│    label?: React.ReactNode
+│    icon?: React.ComponentType
+│  } & (
+│    | { color?: string; theme?: never }
+│    | { color?: never; theme: Record<keyof typeof THEMES, string> }
+│  )
+⋮
+
+components/ui/checkbox.tsx:
+⋮
+│function Checkbox({
+│  className,
+│  ...props
+⋮
+
+components/ui/collapsible.tsx:
+⋮
+│function Collapsible({
+│  ...props
+⋮
+
+components/ui/command.tsx:
+⋮
+│function Command({
+│  className,
+│  ...props
+│}: React.ComponentProps<typeof CommandPrimitive>) {
+⋮
+│function CommandGroup({
+│  className,
+│  ...props
+⋮
+│function CommandItem({
+│  className,
+│  ...props
+⋮
+
+components/ui/dialog.tsx:
+⋮
+│function DialogTrigger({
+│  ...props
+⋮
+│function DialogPortal({
+│  ...props
+⋮
+│function DialogClose({
+│  ...props
+⋮
+│function DialogOverlay({
+│  className,
+│  ...props
+│}: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
+│  return (
+⋮
+│        className={cn(
+│          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=c
+│          className
+⋮
+│        {showCloseButton && (
+│          <DialogPrimitive.Close
+│            data-slot="dialog-close"
+│            className="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[sta
+│          >
+│            <XIcon />
+│            <span className="sr-only">Close</span>
+│          </DialogPrimitive.Close>
+│        )}
+│      </DialogPrimitive.Content>
+⋮
+│  return (
+│    <div
+│      data-slot="dialog-footer"
+│      className={cn(
+│        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
+│        className
+⋮
+
+components/ui/dotted-glow-background.tsx:
+⋮
+│type DottedGlowBackgroundProps = {
+│  className?: string;
+│  /** distance between dot centers in pixels */
+│  gap?: number;
+│  /** base radius of each dot in CSS px */
+│  radius?: number;
+│  /** dot color (will pulse by alpha) */
+│  color?: string;
+│  /** optional dot color for dark mode */
+│  darkColor?: string;
+⋮
+
+components/ui/drawer.tsx:
+⋮
+│function DrawerTrigger({
+│  ...props
+⋮
+│function DrawerPortal({
+│  ...props
+⋮
+│function DrawerClose({
+│  ...props
+⋮
+│function DrawerOverlay({
+│  className,
+│  ...props
+⋮
+│function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="drawer-header"
+│      className={cn(
+│        "flex flex-col gap-0.5 p-4 group-data-[vaul-drawer-direction=bottom]/drawer-content:text-ce
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│function DrawerTitle({
+│  className,
+│  ...props
+⋮
+│function DrawerDescription({
+│  className,
+│  ...props
+⋮
+
+components/ui/empty.tsx:
+⋮
+│function Empty({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="empty"
+│      className={cn(
+│        "flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│function EmptyHeader({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="empty-header"
+│      className={cn(
+│        "flex max-w-sm flex-col items-center gap-2 text-center",
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│}: React.ComponentProps<"div"> & VariantProps<typeof emptyMediaVariants>) {
+⋮
+│function EmptyDescription({ className, ...props }: React.ComponentProps<"p">) {
+│  return (
+│    <div
+│      data-slot="empty-description"
+│      className={cn(
+│        "text-muted-foreground [&>a:hover]:text-primary text-sm/relaxed [&>a]:underline [&>a]:under
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│function EmptyContent({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="empty-content"
+│      className={cn(
+│        "flex w-full max-w-sm min-w-0 flex-col items-center gap-4 text-sm text-balance",
+│        className
+⋮
+
+components/ui/field.tsx:
+⋮
+│  return (
+│    <fieldset
+│      data-slot="field-set"
+│      className={cn(
+│        "flex flex-col gap-6",
+│        "has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
+│        className
+│      )}
+│      {...props}
+│    />
+⋮
+│  return (
+│    <legend
+│      data-slot="field-legend"
+│      data-variant={variant}
+│      className={cn(
+│        "mb-3 font-medium",
+│        "data-[variant=legend]:text-base",
+│        "data-[variant=label]:text-sm",
+│        className
+│      )}
+│      {...props}
+│    />
+⋮
+│  return (
+│    <div
+│      data-slot="field-group"
+│      className={cn(
+│        "group/field-group @container/field-group flex w-full flex-col gap-7 data-[slot=checkbox-gr
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│  return (
+│    <div
+│      role="group"
+│      data-slot="field"
+│      data-orientation={orientation}
+│      className={cn(fieldVariants({ orientation }), className)}
+│      {...props}
+│    />
+│  )
+│}
+│
+⋮
+│      data-slot="field-content"
+│      className={cn(
+│        "group/field-content flex flex-1 flex-col gap-1.5 leading-snug",
+│        className
+⋮
+│  return (
+│    <Label
+│      data-slot="field-label"
+│      className={cn(
+│        "group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true
+│        "has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]
+│        "has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-dat
+│        className
+│      )}
+│      {...props}
+⋮
+│  return (
+│    <div
+│      data-slot="field-label"
+│      className={cn(
+│        "flex w-fit items-center gap-2 text-sm leading-snug font-medium group-data-[disabled=true]/
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│  return (
+│    <p
+│      data-slot="field-description"
+│      className={cn(
+│        "text-muted-foreground text-sm leading-normal font-normal group-has-[[data-orientation=hori
+│        "last:mt-0 nth-last-2:-mt-1 [[data-variant=legend]+&]:-mt-1.5",
+│        "[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
+│        className
+│      )}
+│      {...props}
+⋮
+│      className={cn(
+│        "relative -my-2 h-5 text-sm group-data-[variant=outline]/field-group:-mb-2",
+│        className
+⋮
+
+components/ui/form.tsx:
+⋮
+│type FormFieldContextValue<
+│  TFieldValues extends FieldValues = FieldValues,
+│  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+⋮
+│type FormItemContextValue = {
+│  id: string
+⋮
+│        {...props}
+│      />
+│    </FormItemContext.Provider>
+│  )
+│}
+│
+│function FormLabel({
+│  className,
+│  ...props
+│}: React.ComponentProps<typeof LabelPrimitive.Root>) {
+⋮
+│  return (
+│    <Label
+│      data-slot="form-label"
+│      data-error={!!error}
+│      className={cn("data-[error=true]:text-destructive", className)}
+│      htmlFor={formItemId}
+│      {...props}
+│    />
+⋮
+│function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
+│  const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
+│
+│  return (
+│    <Slot
+│      data-slot="form-control"
+│      id={formItemId}
+│      aria-describedby={
+│        !error
+│          ? `${formDescriptionId}`
+⋮
+│function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
+│  const { formDescriptionId } = useFormField()
+│
+│  return (
+│    <p
+│      data-slot="form-description"
+│      id={formDescriptionId}
+│      className={cn("text-muted-foreground text-sm", className)}
+│      {...props}
+│    />
+⋮
+│function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
+│  const { error, formMessageId } = useFormField()
+│  const body = error ? String(error?.message ?? "") : props.children
+│
+│  if (!body) {
+│    return null
+│  }
+│
+│  return (
+│    <p
+⋮
+
+components/ui/hover-card.tsx:
+⋮
+│function HoverCard({
+│  ...props
+⋮
+
+components/ui/input-otp.tsx:
+⋮
+│function InputOTP({
+│  className,
+│  containerClassName,
+│  ...props
+⋮
+│function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="input-otp-group"
+│      className={cn("flex items-center", className)}
+│      {...props}
+│    />
+│  )
+⋮
+
+components/ui/input.tsx:
+⋮
+│function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+│  return (
+│    <input
+│      type={type}
+│      data-slot="input"
+│      className={cn(
+│        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text
+│        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+│        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border
+│        className
+⋮
+
+components/ui/item.tsx:
+⋮
+│  return (
+│    <div
+│      data-slot="item-content"
+│      className={cn(
+│        "flex flex-1 flex-col gap-1 [&+[data-slot=item-content]]:flex-none",
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│  return (
+│    <div
+│      data-slot="item-title"
+│      className={cn(
+│        "flex w-fit items-center gap-2 text-sm leading-snug font-medium",
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│  return (
+│    <p
+│      data-slot="item-description"
+│      className={cn(
+│        "text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance",
+│        "[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
+│        className
+│      )}
+│      {...props}
+│    />
+⋮
+│  return (
+│    <div
+│      data-slot="item-header"
+│      className={cn(
+│        "flex basis-full items-center justify-between gap-2",
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│    <div
+│      data-slot="item-footer"
+│      className={cn(
+│        "flex basis-full items-center justify-between gap-2",
+│        className
+⋮
+
+components/ui/kbd.tsx:
+⋮
+│function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
+│  return (
+│    <kbd
+│      data-slot="kbd"
+│      className={cn(
+│        "bg-muted text-muted-foreground pointer-events-none inline-flex h-5 w-fit min-w-5 items-cen
+│        "[&_svg:not([class*='size-'])]:size-3",
+│        "[[data-slot=tooltip-content]_&]:bg-background/20 [[data-slot=tooltip-content]_&]:text-back
+│        className
+│      )}
+│      {...props}
+⋮
+
+components/ui/menubar.tsx:
+⋮
+│function MenubarShortcut({
+│  className,
+│  ...props
+│}: React.ComponentProps<"span">) {
+│  return (
+│    <span
+│      data-slot="menubar-shortcut"
+│      className={cn(
+│        "text-muted-foreground ml-auto text-xs tracking-widest",
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+
+components/ui/navigation-menu.tsx:
+⋮
+│function NavigationMenu({
+│  className,
+│  children,
+│  viewport = true,
+│  ...props
+⋮
+│}) {
+│  return (
+│    <NavigationMenuPrimitive.Root
+│      data-slot="navigation-menu"
+│      data-viewport={viewport}
+│      className={cn(
+│        "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",
+│        className
+│      )}
+│      {...props}
+│    >
+⋮
+│      className={cn(
+│        "group flex flex-1 list-none items-center justify-center gap-1",
+│        className
+⋮
+│function NavigationMenuTrigger({
+│  className,
+│  children,
+│  ...props
+⋮
+│function NavigationMenuContent({
+│  className,
+│  ...props
+⋮
+│function NavigationMenuViewport({
+│  className,
+│  ...props
+│}: React.ComponentProps<typeof NavigationMenuPrimitive.Viewport>) {
+│  return (
+│    <div
+│      className={cn(
+│        "absolute top-full left-0 isolate z-50 flex justify-center"
+│      )}
+⋮
+│function NavigationMenuLink({
+│  className,
+│  ...props
+│}: React.ComponentProps<typeof NavigationMenuPrimitive.Link>) {
+│  return (
+│    <NavigationMenuPrimitive.Link
+│      data-slot="navigation-menu-link"
+│      className={cn(
+│        "data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:b
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│      className={cn(
+│        "data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-o
+│        className
+⋮
+
+components/ui/pagination.tsx:
+⋮
+│type PaginationLinkProps = {
+│  isActive?: boolean
+⋮
+
+components/ui/popover.tsx:
+⋮
+│function PopoverTrigger({
+│  ...props
+⋮
+
+components/ui/radio-group.tsx:
+⋮
+│function RadioGroup({
+│  className,
+│  ...props
+⋮
+│function RadioGroupItem({
+│  className,
+│  ...props
+⋮
+
+components/ui/scroll-area.tsx:
+⋮
+│function ScrollArea({
+│  className,
+│  children,
+│  ...props
+⋮
+│function ScrollBar({
+│  className,
+│  orientation = "vertical",
+│  ...props
+⋮
+
+components/ui/select.tsx:
+⋮
+│function SelectTrigger({
+│  className,
+│  size = "default",
+│  children,
+│  ...props
+⋮
+│}) {
+│  return (
+│    <SelectPrimitive.Trigger
+│      data-slot="select-trigger"
+│      data-size={size}
+│      className={cn(
+│        "border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-m
+│        className
+│      )}
+│      {...props}
+│    >
+⋮
+│        className={cn(
+│          "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:anim
+│          position === "popper" &&
+│            "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:tra
+│          className
+⋮
+│        <SelectScrollUpButton />
+│        <SelectPrimitive.Viewport
+│          className={cn(
+│            "p-1",
+│            position === "popper" &&
+│              "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-widt
+│          )}
+⋮
+│function SelectScrollUpButton({
+│  className,
+│  ...props
+⋮
+│function SelectScrollDownButton({
+│  className,
+│  ...props
+⋮
+
+components/ui/separator.tsx:
+⋮
+│function Separator({
+│  className,
+│  orientation = "horizontal",
+│  decorative = true,
+│  ...props
+⋮
+
+components/ui/sheet.tsx:
+⋮
+│function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
+│  return <SheetPrimitive.Root data-slot="sheet" {...props} />;
+│}
+│
+│function SheetTrigger({
+│  ...props
+│}: React.ComponentProps<typeof SheetPrimitive.Trigger>) {
+│  return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
+│}
+│
+│function SheetClose({
+│  ...props
+│}: React.ComponentProps<typeof SheetPrimitive.Close>) {
+⋮
+│function SheetPortal({
+│  ...props
+│}: React.ComponentProps<typeof SheetPrimitive.Portal>) {
+⋮
+│function SheetOverlay({
+│  className,
+│  ...props
+│}: React.ComponentProps<typeof SheetPrimitive.Overlay>) {
+│  return (
+│    <SheetPrimitive.Overlay
+│      data-slot="sheet-overlay"
+│      className={cn(
+│        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-
+│        className,
+│      )}
+│      {...props}
+│    />
+│  );
+⋮
+│        className={cn(
+│          "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 fl
+│          side === "right" &&
+│            "data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0
+│          side === "left" &&
+│            "data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 l
+│          side === "top" &&
+│            "data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top
+│          side === "bottom" &&
+│            "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x
+⋮
+│function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="sheet-header"
+│      className={cn("flex flex-col gap-1.5 p-4", className)}
+│      {...props}
+│    />
+│  );
+⋮
+│function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="sheet-footer"
+│      className={cn("mt-auto flex flex-col gap-2 p-4", className)}
+│      {...props}
+│    />
+│  );
+⋮
+│function SheetTitle({
+│  className,
+│  ...props
+⋮
+│function SheetDescription({
+│  className,
+│  ...props
+⋮
+
+components/ui/sidebar.tsx:
+⋮
+│type SidebarContextProps = {
+│  state: "expanded" | "collapsed"
+│  open: boolean
+│  setOpen: (open: boolean) => void
+│  openMobile: boolean
+│  setOpenMobile: (open: boolean) => void
+│  isMobile: boolean
+│  toggleSidebar: () => void
+⋮
+│function useSidebar() {
+│  const context = React.useContext(SidebarContext)
+│  if (!context) {
+│    throw new Error("useSidebar must be used within a SidebarProvider.")
+│  }
+│
+│  return context
+⋮
+│function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
+│  return (
+│    <ul
+│      data-slot="sidebar-menu"
+│      data-sidebar="menu"
+│      className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+│      {...props}
+│    />
+│  )
+⋮
+│function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
+│  return (
+│    <li
+│      data-slot="sidebar-menu-item"
+│      data-sidebar="menu-item"
+│      className={cn("group/menu-item relative", className)}
+│      {...props}
+│    />
+│  )
+⋮
+│function SidebarMenuButton({
+│  asChild = false,
+│  isActive = false,
+│  variant = "default",
+│  size = "default",
+│  tooltip,
+│  className,
+│  ...props
+⋮
+
+components/ui/skeleton.tsx:
+⋮
+│function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
+│  return (
+│    <div
+│      data-slot="skeleton"
+│      className={cn("bg-accent animate-pulse rounded-md", className)}
+│      {...props}
+│    />
+│  )
+⋮
+
+components/ui/slider.tsx:
+⋮
+│      className={cn(
+│        "relative flex w-full touch-none items-center select-none data-[disabled]:opacity-50 data-[
+│        className
+⋮
+
+components/ui/table.tsx:
+⋮
+│function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
+│  return (
+│    <thead
+│      data-slot="table-header"
+│      className={cn("[&_tr]:border-b", className)}
+│      {...props}
+│    />
+│  )
+⋮
+│function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
+│  return (
+│    <tbody
+│      data-slot="table-body"
+│      className={cn("[&_tr:last-child]:border-0", className)}
+│      {...props}
+│    />
+│  )
+⋮
+│function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
+│  return (
+│    <tfoot
+│      data-slot="table-footer"
+│      className={cn(
+│        "bg-muted/50 border-t font-medium [&>tr]:last:border-b-0",
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
+│  return (
+│    <tr
+│      data-slot="table-row"
+│      className={cn(
+│        "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│function TableHead({ className, ...props }: React.ComponentProps<"th">) {
+│  return (
+│    <th
+│      data-slot="table-head"
+│      className={cn(
+│        "text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([rol
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+│function TableCell({ className, ...props }: React.ComponentProps<"td">) {
+│  return (
+│    <td
+│      data-slot="table-cell"
+│      className={cn(
+│        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:trans
+│        className
+│      )}
+│      {...props}
+│    />
+│  )
+⋮
+
+components/ui/tabs.tsx:
+⋮
+│function TabsList({
+│  className,
+│  ...props
+⋮
+│function TabsTrigger({
+│  className,
+│  ...props
+⋮
+
+components/ui/textarea.tsx:
+⋮
+│function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
+⋮
+│      data-slot="textarea"
+│      className={cn(
+│        "border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:rin
+│        className
+⋮
+
+components/ui/toggle-group.tsx:
+⋮
+│function ToggleGroup({
+│  className,
+│  variant,
+│  size,
+│  spacing = 0,
+│  children,
+│  ...props
+⋮
+│  }) {
+│  return (
+│    <ToggleGroupPrimitive.Root
+│      data-slot="toggle-group"
+│      data-variant={variant}
+│      data-size={size}
+│      data-spacing={spacing}
+│      style={{ "--gap": spacing } as React.CSSProperties}
+│      className={cn(
+│        "group/toggle-group flex w-fit items-center gap-[--spacing(var(--gap))] rounded-md data-[sp
+│        className
+│      )}
+⋮
+│function ToggleGroupItem({
+│  className,
+│  children,
+│  variant,
+│  size,
+│  ...props
+⋮
+│      className={cn(
+│        toggleVariants({
+│          variant: context.variant || variant,
+│          size: context.size || size,
+│        }),
+│        "w-auto min-w-0 shrink-0 px-3 focus:z-10 focus-visible:z-10",
+│        "data-[spacing=0]:rounded-none data-[spacing=0]:shadow-none data-[spacing=0]:first:rounded-
+│        className
+⋮
+
+components/ui/tooltip.tsx:
+⋮
+│function TooltipContent({
+│  className,
+│  sideOffset = 0,
+│  children,
+│  ...props
+⋮
+
+hooks/use-mobile.ts:
+⋮
+│export function useIsMobile() {
+│  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+│
+│  React.useEffect(() => {
+│    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
+│    const onChange = () => {
+│      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+│    }
+│    mql.addEventListener("change", onChange)
+│    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
+⋮
+
+public/oneko/oneko.js:
+⋮
+│(function oneko() {
+│  const isReducedMotion =
+│    window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
+│    window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
+│
+│  if (isReducedMotion) return;
+│
+│  const nekoEl = document.createElement("div");
+│
+│  let nekoPosX = 150;
+⋮
+│  function setSprite(name, frame) {
+│    const sprite = spriteSets[name][frame % spriteSets[name].length];
+│    nekoEl.style.backgroundPosition = `${sprite[0] * 32}px ${sprite[1] * 32}px`;
+⋮
+│  function resetIdleAnimation() {
+│    idleAnimation = null;
+│    idleAnimationFrame = 0;
+⋮
+

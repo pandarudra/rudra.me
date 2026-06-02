@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import { ArrowRight, Code2, Globe, Sparkles, Zap } from "lucide-react";
+import React, { useState } from "react";
+import { ArrowRight, Zap, Play, RotateCcw, Download } from "lucide-react";
 import { FadeIn } from "../ui/FadeIn";
-import { MagnetButton } from "../ui/Buttons";
 import { heroTags } from "@/constants";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 
 const heroStats = [
   { value: "7+", label: "core specialties" },
@@ -13,191 +13,215 @@ const heroStats = [
   { value: "Full Stack", label: "product delivery" },
 ];
 
-const focusPoints = [
-  "Clean interfaces with performance-first architecture",
-  "Realtime workflows, API design, and product polish",
-  "Shipping dependable software that feels sharp and modern",
-];
+type HistoryItem = {
+  id: string;
+  type: 'input' | 'output' | 'error' | 'log';
+  content: string;
+  valueType?: 'string' | 'number' | 'boolean' | 'undefined' | 'object' | 'function' | 'bigint' | 'symbol';
+};
 
-const HolographicDevDeck = () => {
+const CleanDevCard = () => {
+  const [history, setHistory] = useState<HistoryItem[]>([
+    { id: 'init-1', type: 'input', content: 'const dev = { name: "Rudra", role: "Full-Stack" };' },
+    { id: 'init-2', type: 'output', content: 'undefined', valueType: 'undefined' },
+    { id: 'init-3', type: 'input', content: 'dev.name' },
+    { id: 'init-4', type: 'output', content: '"Rudra"', valueType: 'string' },
+  ]);
+  const [input, setInput] = useState('');
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+  const iframeRef = React.useRef<HTMLIFrameElement | null>(null);
+
+  React.useEffect(() => {
+    // Setup isolated iframe sandbox for executing JS
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    iframeRef.current = iframe;
+    
+    const win = iframe.contentWindow as any;
+    if (win) {
+      // Pre-load the 'dev' object silently in the sandbox
+      try {
+        win.eval('var dev = { name: "Rudra", role: "Full-Stack" };');
+      } catch (e) {}
+    }
+
+    return () => {
+      if (iframe.parentNode) {
+        iframe.parentNode.removeChild(iframe);
+      }
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: scrollContainerRef.current.scrollHeight,
+        behavior: "smooth"
+      });
+    }
+  }, [history]);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (!input.trim()) return;
+
+      const newHistory: HistoryItem[] = [...history, { id: Date.now().toString(), type: 'input', content: input }];
+      
+      const win = iframeRef.current?.contentWindow as any;
+      if (!win) {
+         setHistory([...newHistory, { id: Date.now().toString()+'-err', type: 'error', content: "Sandbox not initialized."}]);
+         return;
+      }
+
+      const originalConsoleLog = win.console.log;
+      const interceptedLogs: string[] = [];
+      win.console.log = (...args: any[]) => {
+        interceptedLogs.push(args.map((a: any) => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '));
+        if (originalConsoleLog) originalConsoleLog.apply(win.console, args);
+      };
+
+      try {
+        // Rewrite let/const to var so they persist in the iframe global scope and can be redefined
+        const processedCode = input.replace(/\b(?:let|const)\s+/g, 'var ');
+        const result = win.eval(processedCode);
+        
+        interceptedLogs.forEach((log, index) => {
+          newHistory.push({
+            id: Date.now().toString() + '-log-' + index,
+            type: 'log',
+            content: log
+          });
+        });
+
+        let valueType = typeof result;
+        let content = String(result);
+        
+        if (valueType === 'object' && result !== null) {
+           content = JSON.stringify(result, null, 2);
+        } else if (valueType === 'string') {
+           content = `"${result}"`;
+        } else if (valueType === 'function') {
+           content = `ƒ ${result.name || 'anonymous'}()`;
+        }
+        
+        newHistory.push({
+          id: Date.now().toString() + '-out',
+          type: 'output',
+          content,
+          valueType: result === null ? 'object' : valueType
+        });
+      } catch (err: any) {
+        newHistory.push({
+          id: Date.now().toString() + '-err',
+          type: 'error',
+          content: err.toString()
+        });
+      } finally {
+        win.console.log = originalConsoleLog;
+      }
+
+      setHistory(newHistory);
+      setInput('');
+    }
+  };
+
+  const getColorForType = (type?: string) => {
+    switch (type) {
+      case 'number': return 'text-[#3b78ff] dark:text-[#9980ff]';
+      case 'string': return 'text-[#d03238] dark:text-[#e36e6e]';
+      case 'boolean': return 'text-[#b86700] dark:text-[#ffbd2e]';
+      case 'undefined': return 'text-[#868685]';
+      case 'function': return 'text-[#2ead4b] font-italic';
+      default: return 'text-[#0e0f0c] dark:text-white';
+    }
+  };
+
   return (
-    <div className="relative lg:-mt-12 w-full">
-      <motion.div
-        animate={{
-          y: [0, -10, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="relative overflow-hidden rounded-[40px] border border-border/80 bg-background/40 backdrop-blur-2xl p-6 sm:p-8 shadow-[0_30px_80px_rgba(0,0,0,0.18)] transition-colors duration-300 hover:border-primary/45 group w-full"
+    <div className="relative w-full max-w-lg mx-auto lg:ml-auto rounded-[24px] bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 shadow-2xl overflow-hidden flex flex-col font-mono text-[13px] sm:text-[14px] h-[400px] transition-colors duration-300">
+      <div className="flex items-center gap-3 px-6 py-4 border-b border-[#0e0f0c]/5 dark:border-white/5 bg-[#e8ebe6]/40 dark:bg-black/20">
+        <div className="flex gap-2">
+          <div className="size-3.5 rounded-full bg-[#d03238]"></div>
+          <div className="size-3.5 rounded-full bg-[#ffd11a]"></div>
+          <div className="size-3.5 rounded-full bg-[#2ead4b]"></div>
+        </div>
+        <div className="text-[12px] font-bold text-[#868685] uppercase tracking-widest ml-2">Console</div>
+      </div>
+      
+      <div 
+        ref={scrollContainerRef}
+        className="flex-1 overflow-y-auto p-4 sm:p-6 scrollbar-thin scrollbar-thumb-[#0e0f0c]/10 dark:scrollbar-thumb-white/10"
       >
-        <div className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-scan pointer-events-none" />
-
-        <div className="absolute -inset-20 bg-gradient-to-tr from-transparent via-primary/5 to-sky-500/5 rounded-[40px] blur-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-        <div
-          style={{ transform: "translateZ(40px)", transformStyle: "preserve-3d" }}
-          className="relative flex items-center justify-between gap-4 border-b border-border/50 pb-5 mb-6"
-        >
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.4em] text-primary font-bold">
-              // LIVE SHAPING
-            </p>
-            <h2 className="mt-2 text-2xl font-black tracking-tight text-foreground sm:text-3xl">
-              Thoughtful web products
-            </h2>
+        {history.map((item) => (
+          <div key={item.id} className="flex gap-3 py-1.5 border-b border-[#0e0f0c]/5 dark:border-white/5 last:border-0 group break-all">
+            {item.type === 'input' && (
+              <>
+                <span className="text-[#3b78ff] select-none font-bold mt-0.5">{">"}</span>
+                <span className="text-[#0e0f0c] dark:text-white whitespace-pre-wrap flex-1">{item.content}</span>
+              </>
+            )}
+            {item.type === 'output' && (
+              <>
+                <span className="text-[#868685] select-none text-[11px] mt-1">{"<·"}</span>
+                <span className={`${getColorForType(item.valueType)} whitespace-pre-wrap flex-1`}>{item.content}</span>
+              </>
+            )}
+            {item.type === 'log' && (
+              <>
+                <span className="text-transparent select-none mt-0.5">{">"}</span>
+                <span className="text-[#454745] dark:text-[#a0a0a0] whitespace-pre-wrap flex-1">{item.content}</span>
+              </>
+            )}
+            {item.type === 'error' && (
+              <>
+                <span className="text-[#d03238] select-none text-[11px] mt-1">{"✖"}</span>
+                <span className="text-[#d03238] whitespace-pre-wrap flex-1">{item.content}</span>
+              </>
+            )}
           </div>
-          <div className="rounded-2xl border border-border/60 bg-primary/10 p-3 text-primary shadow-inner">
-            <Code2 className="size-6 animate-pulse" />
-          </div>
+        ))}
+        
+        <div className="flex gap-3 py-1.5 items-start mt-1">
+          <span className="text-[#3b78ff] select-none font-bold mt-0.5">{">"}</span>
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="flex-1 bg-transparent text-[#0e0f0c] dark:text-white focus:outline-none placeholder:text-[#868685]"
+            spellCheck={false}
+            autoComplete="off"
+          />
         </div>
-
-        <div
-          style={{ transform: "translateZ(60px)", transformStyle: "preserve-3d" }}
-          className="relative grid gap-5 sm:grid-cols-2"
-        >
-          <div className="rounded-[28px] border border-border/60 bg-background/80 p-5 shadow-lg relative group/focus hover:border-primary/30 transition-colors">
-            <div className="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-full blur-xl" />
-            <p className="text-xs font-black tracking-widest uppercase text-primary mb-4">
-              Focus Areas
-            </p>
-            <ul className="space-y-3.5 text-sm text-muted-foreground">
-              {focusPoints.map((point) => (
-                <li key={point} className="flex gap-3 items-start">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary shrink-0 animate-ping" />
-                  <span className="leading-relaxed font-semibold">{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-[28px] border border-border/60 bg-background/80 p-5 shadow-lg flex flex-col justify-between hover:border-sky-500/30 transition-colors">
-            <div>
-              <p className="text-xs font-black tracking-widest uppercase text-primary mb-4">
-                Experience Stack
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "Next.js",
-                  "TypeScript",
-                  "Motion",
-                  "Tailwind",
-                  "WebSockets",
-                  "APIs",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-xl border border-border/65 bg-secondary/30 px-3 py-1.5 text-xs font-mono font-bold text-muted-foreground hover:text-foreground hover:bg-secondary/65 transition-colors cursor-default"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-6 rounded-xl border border-border/50 bg-secondary/10 p-3.5 flex items-center gap-3 text-xs text-muted-foreground font-semibold">
-              <Globe className="size-4 text-primary shrink-0 animate-spin" style={{ animationDuration: "12s" }} />
-              <span>Building experiences that look sharp and ship clean.</span>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+        <div className="h-2" />
+      </div>
     </div>
   );
 };
 
 export const HeroSection = () => {
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setCoords({ x, y });
-  };
-
+  const router = useRouter();
   return (
     <section
-      onMouseMove={handleMouseMove}
-      className="relative w-full min-h-screen flex flex-col pt-20 pb-16 sm:pt-24 sm:pb-24 overflow-hidden bg-background"
+      id="hero"
+      className="relative w-full min-h-screen flex flex-col justify-center pt-24 pb-16 sm:pt-32 sm:pb-24 overflow-hidden bg-[#e8ebe6] dark:bg-[#0e0f0c] transition-colors duration-300"
     >
-      <style jsx global>{`
-        @keyframes gradient-flow {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient-flow {
-          animation: gradient-flow 5s ease infinite;
-        }
-        @keyframes laser-scan {
-          0% { top: 0%; opacity: 0; }
-          8% { opacity: 1; }
-          92% { opacity: 1; }
-          100% { top: 100%; opacity: 0; }
-        }
-        .group:hover .group-hover\:animate-scan {
-          animation: laser-scan 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-        }
-      `}</style>
-
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none opacity-70"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px)",
-          backgroundSize: "44px 44px",
-          maskImage:
-            "radial-gradient(circle at center, black 0%, black 52%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(circle at center, black 0%, black 52%, transparent 100%)",
-        }}
-      />
-
-      <div
-        style={{
-          background: mounted
-            ? `radial-gradient(700px circle at ${coords.x}px ${coords.y}px, rgba(59, 130, 246, 0.12), transparent 80%)`
-            : "radial-gradient(circle at center, rgba(59,130,246,0.1), transparent 70%)"
-        }}
-        className="absolute inset-0 pointer-events-none transition-all duration-300 ease-out"
-      />
-
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_25%,rgba(16,185,129,0.08),transparent_28%),radial-gradient(circle_at_80%_75%,rgba(236,72,153,0.06),transparent_30%)]" />
-
-      <div className="absolute top-1/2 left-1/2 h-112 w-md -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/3 blur-[120px] pointer-events-none" />
-      <div className="absolute top-24 left-[8%] h-40 w-40 rounded-full border border-border/30 bg-background/10 backdrop-blur-sm pointer-events-none" />
-      <div className="absolute bottom-24 right-[10%] h-28 w-28 rounded-2xl border border-border/30 bg-background/10 backdrop-blur-sm pointer-events-none rotate-12" />
-
-      <div className="relative z-10 w-full px-6">
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="text-center lg:text-left">
-            <FadeIn y={20} delay={0.05} className="mb-6 inline-flex">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-4 py-2 text-sm text-muted-foreground shadow-sm backdrop-blur-md">
-                <Sparkles className="size-4 text-primary animate-pulse" />
-                Available for freelance, collaboration, and ambitious builds
-              </div>
-            </FadeIn>
-
-            <FadeIn y={40} delay={0.1} className="font-lf">
-              <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter mb-6 bg-linear-to-b from-foreground via-foreground/90 to-foreground/50 bg-clip-text text-transparent font-lf">
+      <div className="relative z-10 w-full px-6 md:px-12">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+          <div className="text-center lg:text-left flex flex-col justify-center">
+            
+            <FadeIn y={40} delay={0.1}>
+              <h1 className="text-6xl sm:text-7xl md:text-[100px] lg:text-[120px] font-black leading-[0.85] tracking-tight mb-8 text-[#0e0f0c] dark:text-white font-sans">
                 Hi, I’m{" "}
-                <span className="bg-gradient-to-r from-primary via-sky-400 to-pink-500 bg-[size:200%_auto] animate-gradient-flow bg-clip-text text-transparent">
+                <span className="text-[#9fe870]">
                   Rudra.
                 </span>
               </h1>
             </FadeIn>
 
             <FadeIn y={30} delay={0.22}>
-              <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground font-light max-w-2xl mx-auto lg:mx-0 mb-8 leading-relaxed">
+              <p className="text-xl sm:text-2xl text-[#454745] dark:text-[#868685] font-medium max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed tracking-tight">
                 I design and build full-stack products that feel fast, polished,
                 and genuinely useful. From realtime experiences to scalable
                 APIs, I focus on the details that make software memorable.
@@ -209,56 +233,60 @@ export const HeroSection = () => {
               delay={0.32}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5 flex-wrap"
             >
-              <a href="mailto:rudrapanda8206@gmail.com">
-                <MagnetButton className="min-w-48">
-                  <span className="inline-flex items-center gap-2">
-                    <Zap className="size-4" />
-                    Get In Touch
-                  </span>
-                </MagnetButton>
+              <a href="mailto:rudrapanda8206@gmail.com" className="w-full sm:w-auto">
+                <button className="w-full sm:w-auto group inline-flex h-14 items-center justify-center gap-2 rounded-[24px] bg-[#9fe870] px-8 text-[16px] font-bold text-[#0e0f0c] transition-all hover:bg-[#cdffad] hover:scale-105 active:scale-95 shadow-lg shadow-[#9fe870]/20">
+                  Get In Touch
+                </button>
               </a>
               <a
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
-                  const element = document.getElementById("projects");
-                  if (element) {
-                    const headerOffset = 80;
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
-                    window.history.pushState(null, "", "#projects");
-                  }
+                  // const element = document.getElementById("projects");
+                  // if (element) {
+                  //   const headerOffset = 80;
+                  //   const elementPosition = element.getBoundingClientRect().top;
+                  //   const offsetPosition =
+                  //     elementPosition + window.pageYOffset - headerOffset;
+                  //   window.scrollTo({
+                  //     top: offsetPosition,
+                  //     behavior: "smooth",
+                  //   });
+                  //   window.history.pushState(null, "", "#projects");
+                  // }
+                  router.push("/blog");
                 }}
-                className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-6 py-4 font-medium text-foreground shadow-sm backdrop-blur-md transition-all hover:bg-secondary/40 hover:scale-105 active:scale-95 cursor-pointer"
+                className="w-full sm:w-auto group inline-flex h-14 items-center justify-center gap-2 rounded-[24px] border-2 border-[#0e0f0c] dark:border-white bg-transparent px-8 text-[16px] font-bold text-[#0e0f0c] dark:text-white transition-all hover:bg-[#0e0f0c] hover:text-white dark:hover:bg-white dark:hover:text-[#0e0f0c] hover:scale-105 active:scale-95 cursor-pointer"
               >
-                Explore Projects
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                Explore Blogs
+                <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
               </a>
-              <a
-                href="/blog"
-                className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/70 px-6 py-4 font-medium text-foreground shadow-sm backdrop-blur-md transition-all hover:bg-secondary/40 hover:scale-105 active:scale-95 cursor-pointer"
+              {/* <a
+                href="/files/rudra_resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto group inline-flex h-14 items-center justify-center gap-2 rounded-[24px] border-2 border-[#0e0f0c]/10 dark:border-white/10 bg-transparent px-8 text-[16px] font-bold text-[#454745] dark:text-[#a0a0a0] transition-all hover:bg-[#0e0f0c]/5 dark:hover:bg-white/5 hover:text-[#0e0f0c] dark:hover:text-white hover:border-[#0e0f0c]/20 dark:hover:border-white/20 hover:scale-105 active:scale-95 cursor-pointer"
               >
-                Read Blog
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-              </a>
+                Resume
+                <Download className="size-4 transition-transform group-hover:-translate-y-1" />
+              </a> */}
             </FadeIn>
 
-            <FadeIn
+            {/* <FadeIn
               y={16}
               delay={0.42}
-              className="mt-8 flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 max-w-3xl opacity-90"
+              className="mt-12 flex flex-wrap justify-center lg:justify-start gap-3 max-w-3xl"
             >
               {heroTags.map((tag, i) => (
                 <motion.span
                   whileHover={{ y: -2, scale: 1.03 }}
                   key={i}
-                  className="px-4 py-2 rounded-full border border-border/50 bg-secondary/20 backdrop-blur-sm text-sm font-mono tracking-tight text-muted-foreground shadow-sm hover:border-primary/30 hover:text-foreground transition-all cursor-default select-none"
+                  className="px-5 py-2.5 rounded-full border-2 border-[#0e0f0c]/5 dark:border-white/10 bg-white/40 dark:bg-white/5 text-[14px] font-bold tracking-tight text-[#454745] dark:text-[#a0a0a0] transition-all cursor-default select-none hover:bg-white dark:hover:bg-white/10 hover:border-[#0e0f0c]/10 dark:hover:border-white/20"
                 >
                   {tag}
                 </motion.span>
               ))}
-            </FadeIn>
+            </FadeIn> */}
 
             <FadeIn
               y={18}
@@ -269,12 +297,12 @@ export const HeroSection = () => {
                 <motion.div
                   whileHover={{ y: -4, scale: 1.02 }}
                   key={stat.label}
-                  className="rounded-3xl border border-border/60 bg-background/75 p-4 text-left shadow-sm backdrop-blur-md hover:border-primary/40 hover:shadow-md transition-all cursor-default"
+                  className="rounded-[24px] bg-white dark:bg-[#121311] p-6 text-left shadow-sm border border-[#0e0f0c]/5 dark:border-white/5 transition-all hover:shadow-xl hover:border-[#9fe870]/50"
                 >
-                  <div className="text-2xl sm:text-3xl font-black tracking-tight text-foreground bg-gradient-to-r from-foreground via-foreground to-primary/80 bg-clip-text text-transparent">
+                  <div className="text-3xl font-black tracking-tight text-[#0e0f0c] dark:text-white">
                     {stat.value}
                   </div>
-                  <div className="mt-1 text-sm text-muted-foreground font-semibold">
+                  <div className="mt-2 text-[14px] text-[#454745] dark:text-[#868685] font-bold">
                     {stat.label}
                   </div>
                 </motion.div>
@@ -282,8 +310,8 @@ export const HeroSection = () => {
             </FadeIn>
           </div>
 
-          <FadeIn y={26} delay={0.28} className="w-full flex justify-center">
-            <HolographicDevDeck />
+          <FadeIn y={25} delay={0.28} className="w-full flex justify-center lg:justify-end">
+            <CleanDevCard />
           </FadeIn>
         </div>
       </div>

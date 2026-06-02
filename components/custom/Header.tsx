@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { Sparkles } from "lucide-react";
+import React from "react";
 
 export const Header = () => {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -23,49 +22,27 @@ export const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      <div className="absolute inset-0 bg-background/70 backdrop-blur-xl border-b border-border/40" />
-
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="font-lf text-2xl sm:text-3xl font-black tracking-tighter bg-linear-to-b from-foreground to-foreground/70 bg-clip-text text-transparent transition-opacity hover:opacity-80"
-        >
-          Rudra<span className="text-primary">.</span>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 rounded-full border border-border/50 bg-background/50 px-6 py-2.5 backdrop-blur-md shadow-sm">
-          <a href="#about" onClick={(e) => handleScroll(e, 'about')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+    <header className="fixed top-0 left-0 right-0 z-50 pt-6 pointer-events-none">
+      <div className="w-full flex items-center justify-center px-4">
+        <nav className="pointer-events-auto flex flex-wrap items-center justify-center gap-4 sm:gap-8 rounded-[24px] border border-[#0e0f0c]/5 dark:border-white/5 bg-white/70 dark:bg-[#121311]/70 px-6 sm:px-8 py-3 backdrop-blur-md shadow-sm">
+          <a href="#about" onClick={(e) => handleScroll(e, 'about')} className="text-[13px] sm:text-[14px] font-bold text-[#454745] dark:text-[#a0a0a0] hover:text-[#0e0f0c] dark:hover:text-white transition-colors cursor-pointer">
             About
           </a>
-          <a href="#services" onClick={(e) => handleScroll(e, 'services')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+          <a href="#services" onClick={(e) => handleScroll(e, 'services')} className="text-[13px] sm:text-[14px] font-bold text-[#454745] dark:text-[#a0a0a0] hover:text-[#0e0f0c] dark:hover:text-white transition-colors cursor-pointer">
             Services
           </a>
-          <a href="#experience" onClick={(e) => handleScroll(e, 'experience')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+          <a href="#experience" onClick={(e) => handleScroll(e, 'experience')} className="text-[13px] sm:text-[14px] font-bold text-[#454745] dark:text-[#a0a0a0] hover:text-[#0e0f0c] dark:hover:text-white transition-colors cursor-pointer">
             Experience
           </a>
-          <a href="#projects" onClick={(e) => handleScroll(e, 'projects')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+          <a href="#projects" onClick={(e) => handleScroll(e, 'projects')} className="text-[13px] sm:text-[14px] font-bold text-[#454745] dark:text-[#a0a0a0] hover:text-[#0e0f0c] dark:hover:text-white transition-colors cursor-pointer">
             Projects
           </a>
-          <a href="#certificates" onClick={(e) => handleScroll(e, 'certificates')} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
+          <a href="#certificates" onClick={(e) => handleScroll(e, 'certificates')} className="text-[13px] sm:text-[14px] font-bold text-[#454745] dark:text-[#a0a0a0] hover:text-[#0e0f0c] dark:hover:text-white transition-colors cursor-pointer">
             Certificates
           </a>
         </nav>
-
-        {/* CTA */}
-        <div className="flex items-center gap-4">
-          <a
-            href="mailto:rudrapanda8206@gmail.com"
-            className="group inline-flex items-center gap-2 rounded-full border border-border/60 bg-foreground px-4 py-2 sm:px-5 sm:py-2.5 text-sm font-medium text-background shadow-sm transition-transform hover:scale-105 active:scale-95"
-          >
-            <Sparkles className="size-4" />
-            <span className="hidden sm:inline">Say Hello</span>
-            <span className="sm:hidden">Hello</span>
-          </a>
-        </div>
       </div>
     </header>
   );
 };
+

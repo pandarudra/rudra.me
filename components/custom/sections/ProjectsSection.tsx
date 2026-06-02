@@ -10,7 +10,6 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
 import { FadeIn } from "../ui/FadeIn";
 import { projects } from "@/constants";
 
@@ -41,8 +40,6 @@ const ProjectCard = ({
     offset: ["start end", "start start"],
   });
 
-  // Calculate target scale based on how far we are in the stack
-  // The first card scales down the most, the last card scales down the least.
   const targetScale = 1 - (total - 1 - index) * 0.05;
   const scale = useTransform(scrollYProgress, [0, 1], [1, targetScale]);
 
@@ -54,104 +51,99 @@ const ProjectCard = ({
       <motion.div
         ref={cardRef}
         style={{ scale }}
-        className="w-full max-w-6xl h-full max-h-175 bg-background border border-border shadow-2xl rounded-[40px] sm:rounded-[60px] p-6 sm:p-10 flex flex-col origin-top overflow-hidden"
+        className="w-full max-w-6xl h-full max-h-175 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 shadow-2xl rounded-[24px] p-6 sm:p-10 flex flex-col origin-top overflow-hidden"
       >
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
           <div className="flex items-start gap-5 sm:gap-6">
-            <span className="text-5xl sm:text-6xl font-black text-muted-foreground/20 leading-none">
+            <span className="text-5xl sm:text-6xl font-black text-[#0e0f0c]/10 dark:text-white/10 leading-none">
               {project.num}
             </span>
             <div>
-              <p className="text-sm font-semibold tracking-widest uppercase text-primary mb-1">
+              <p className="text-sm font-bold tracking-widest uppercase text-[#9fe870] mb-1">
                 {project.category}
               </p>
-              <h3 className="text-3xl sm:text-4xl font-bold mb-2">
+              <h3 className="text-3xl sm:text-4xl font-black mb-2 text-[#0e0f0c] dark:text-white">
                 {project.name}
               </h3>
               {project.desc && (
-                <p className="text-muted-foreground max-w-lg">{project.desc}</p>
+                <p className="text-[#454745] dark:text-[#868685] max-w-lg font-medium">{project.desc}</p>
               )}
             </div>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
-            <Button asChild variant="outline" className="rounded-full px-5">
-              <a href={project.github} target="_blank" rel="noreferrer">
-                <Github className="size-4" />
-                GitHub
-              </a>
-            </Button>
-            <Button asChild className="rounded-full px-5">
-              <a href={project.live} target="_blank" rel="noreferrer">
-                <ExternalLink className="size-4" />
-                Live
-              </a>
-            </Button>
-            <Button
+            <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex h-10 items-center justify-center gap-2 rounded-[24px] border-2 border-[#0e0f0c]/5 dark:border-white/5 bg-transparent px-5 text-[14px] font-bold text-[#0e0f0c] dark:text-white transition-all hover:bg-black/5 dark:hover:bg-white/5">
+              <Github className="size-4" />
+              GitHub
+            </a>
+            <a href={project.live} target="_blank" rel="noreferrer" className="inline-flex h-10 items-center justify-center gap-2 rounded-[24px] bg-[#9fe870] px-5 text-[14px] font-bold text-[#0e0f0c] transition-all hover:bg-[#cdffad] hover:scale-105 active:scale-95 shadow-lg shadow-[#9fe870]/20">
+              <ExternalLink className="size-4" />
+              Live
+            </a>
+            <button
               type="button"
-              variant="ghost"
-              className="rounded-full px-5"
               onClick={() => setInfoOpen(true)}
+              className="inline-flex h-10 items-center justify-center gap-2 rounded-[24px] border-2 border-transparent bg-transparent px-5 text-[14px] font-bold text-[#0e0f0c] dark:text-white transition-all hover:bg-black/5 dark:hover:bg-white/5"
             >
               <Info className="size-4" />
               Info
-            </Button>
+            </button>
           </div>
         </div>
 
         {/* Bottom Media */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4 h-full min-h-75">
           <div className="md:col-span-5 flex flex-col gap-4 min-h-75">
-            <div className="relative flex-[1.35] rounded-[30px] overflow-hidden border border-border/60 bg-muted">
+            <div className="relative flex-[1.35] rounded-[24px] overflow-hidden border border-[#0e0f0c]/5 dark:border-white/5 bg-[#e8ebe6] dark:bg-black">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${project.image})` }}
               />
-              <div className="absolute inset-0 bg-linear-to-t from-background/80 via-background/10 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-xs uppercase tracking-[0.3em] text-white/70 mb-2">
+              <div className="absolute inset-0 bg-black/40" />
+              <div className="absolute bottom-5 left-5 right-5">
+                <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/70 mb-2">
                   Preview
                 </p>
-                <p className="text-lg font-semibold text-white drop-shadow-sm">
+                <p className="text-lg font-black text-white drop-shadow-sm">
                   {project.name}
                 </p>
               </div>
             </div>
-            <div className="relative flex-[0.9] rounded-[30px] overflow-hidden border border-border/60 bg-muted">
+            <div className="relative flex-[0.9] rounded-[24px] overflow-hidden border border-[#0e0f0c]/5 dark:border-white/5 bg-[#e8ebe6] dark:bg-black">
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: `url(${project.image})` }}
               />
-              <div className="absolute inset-0 bg-linear-to-br from-black/45 via-black/5 to-transparent" />
-              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3">
-                <span className="rounded-full bg-black/55 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+              <div className="absolute inset-0 bg-black/40" />
+              <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3">
+                <span className="rounded-full bg-white/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-md border border-white/20">
                   {project.category}
                 </span>
-                <span className="rounded-full bg-black/55 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+                <span className="rounded-full bg-white/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-md border border-white/20">
                   {project.num}
                 </span>
               </div>
             </div>
           </div>
-          <div className="md:col-span-7 rounded-[30px] overflow-hidden border border-border/60 bg-muted relative min-h-75">
+          <div className="md:col-span-7 rounded-[24px] overflow-hidden border border-[#0e0f0c]/5 dark:border-white/5 bg-[#e8ebe6] dark:bg-black relative min-h-75">
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url(${project.image})` }}
             />
-            <div className="absolute inset-0 bg-linear-to-br from-black/55 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end">
-              <div className="max-w-md rounded-[24px] border border-white/20 bg-black/35 p-5 backdrop-blur-md text-white shadow-2xl">
-                <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-3">
+              <div className="max-w-md rounded-[24px] border border-white/20 bg-black/40 p-6 backdrop-blur-xl text-white shadow-2xl">
+                <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-[#9fe870] mb-3">
                   About this project
                 </p>
-                <p className="text-lg sm:text-xl leading-relaxed text-white/90">
+                <p className="text-lg sm:text-xl font-medium leading-relaxed text-white">
                   {project.desc}
                 </p>
-                <div className="mt-6 flex items-center gap-3 text-sm text-white/70">
-                  <span className="rounded-full border border-white/20 px-3 py-1">
+                <div className="mt-6 flex flex-wrap items-center gap-2 text-xs font-bold text-white/80">
+                  <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5">
                     GitHub + Live links included
                   </span>
-                  <span className="rounded-full border border-white/20 px-3 py-1">
+                  <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5">
                     Info opens modal
                   </span>
                 </div>
@@ -161,39 +153,35 @@ const ProjectCard = ({
         </div>
 
         <Sheet open={infoOpen} onOpenChange={setInfoOpen}>
-          <SheetContent className="sm:max-w-xl">
+          <SheetContent className="sm:max-w-xl bg-white dark:bg-[#0e0f0c] border-l border-[#0e0f0c]/10 dark:border-white/10">
             <SheetHeader className="pt-10 pr-10">
-              <SheetTitle className="text-2xl sm:text-3xl">
+              <SheetTitle className="text-3xl sm:text-4xl font-black text-[#0e0f0c] dark:text-white">
                 {project.name}
               </SheetTitle>
-              <SheetDescription className="text-base leading-7">
+              <SheetDescription className="text-[16px] font-bold uppercase tracking-widest text-[#9fe870]">
                 {project.category}
               </SheetDescription>
             </SheetHeader>
 
-            <div className="px-4 pb-4 space-y-5">
-              <div className="rounded-3xl overflow-hidden border border-border/60">
+            <div className="px-4 pb-4 space-y-6 mt-6">
+              <div className="rounded-[24px] overflow-hidden border border-[#0e0f0c]/10 dark:border-white/10">
                 <div
                   className="aspect-16/10 bg-cover bg-center"
                   style={{ backgroundImage: `url(${project.image})` }}
                 />
               </div>
 
-              <p className="text-muted-foreground leading-7">{project.desc}</p>
+              <p className="text-[#454745] dark:text-[#868685] font-medium leading-relaxed text-lg">{project.desc}</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <Button asChild variant="outline" className="rounded-full">
-                  <a href={project.github} target="_blank" rel="noreferrer">
-                    <Github className="size-4" />
-                    Open GitHub
-                  </a>
-                </Button>
-                <Button asChild className="rounded-full">
-                  <a href={project.live} target="_blank" rel="noreferrer">
-                    <ExternalLink className="size-4" />
-                    Open Live Site
-                  </a>
-                </Button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href={project.github} target="_blank" rel="noreferrer" className="inline-flex h-12 items-center justify-center gap-2 rounded-[24px] border-2 border-[#0e0f0c]/10 dark:border-white/10 bg-transparent px-5 text-[15px] font-bold text-[#0e0f0c] dark:text-white transition-all hover:bg-black/5 dark:hover:bg-white/5">
+                  <Github className="size-5" />
+                  Open GitHub
+                </a>
+                <a href={project.live} target="_blank" rel="noreferrer" className="inline-flex h-12 items-center justify-center gap-2 rounded-[24px] bg-[#9fe870] px-5 text-[15px] font-bold text-[#0e0f0c] transition-all hover:bg-[#cdffad] shadow-lg shadow-[#9fe870]/20">
+                  <ExternalLink className="size-5" />
+                  Open Live Site
+                </a>
               </div>
             </div>
           </SheetContent>
@@ -202,15 +190,15 @@ const ProjectCard = ({
     </div>
   );
 };
-<div className="absolute inset-0 bg-linear-to-br from-black/55 via-black/20 to-transparent" />;
+
 export const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="bg-background relative py-20 px-6 -mt-10 z-10 rounded-t-[40px] sm:rounded-t-[60px]"
+      className="bg-[#e8ebe6] dark:bg-[#0e0f0c] relative py-20 px-6 -mt-10 z-10 rounded-t-[24px] transition-colors duration-300"
     >
       <FadeIn>
-        <h2 className="text-4xl sm:text-6xl font-black text-center mb-10 text-foreground">
+        <h2 className="text-5xl sm:text-7xl font-black text-center mb-10 text-[#0e0f0c] dark:text-white tracking-tight">
           Projects
         </h2>
       </FadeIn>

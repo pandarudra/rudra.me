@@ -3,6 +3,7 @@ import { MarqueeSection } from "./sections/MarqueeSection";
 import { AboutSection } from "./sections/AboutSection";
 import { ServicesSection } from "./sections/ServicesSection";
 import { ExperienceSection } from "./sections/ExperienceSection";
+import { SkillsLeetCodeSection } from "./sections/SkillsLeetCodeSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import { GithubSection } from "./sections/GithubSection";
 import { CertificatesSection } from "./sections/CertificatesSection";
@@ -16,6 +17,7 @@ const MainPage = () => {
       <AboutSection />
       <ServicesSection />
       <ExperienceSection />
+      <SkillsLeetCodeSection />
       <ProjectsSection />
       <GithubSection />
       <CertificatesSection />

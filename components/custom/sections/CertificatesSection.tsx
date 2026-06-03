@@ -2,8 +2,9 @@
 
 import React, { useRef } from "react";
 import { FadeIn } from "../ui/FadeIn";
-import { Award, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Award, ChevronLeft, ChevronRight } from "lucide-react";
 import { certificates } from "@/constants/certificate.c";
+
 
 const getBgClass = (iconColor: string) => {
   if (iconColor.includes("blue")) return "bg-blue-500/10 border-blue-500/20";
@@ -38,10 +39,19 @@ const StaticCard = ({ cert }: { cert: any }) => {
         </p>
       </div>
 
-      <div className="w-full">
+      <div className="w-full flex justify-between">
         <span className="text-[13px] font-bold text-[#0e0f0c] dark:text-white">
           {cert.date}
         </span>
+        <a
+          href={cert.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs md:text-sm cursor-pointer hover:underline underline-offset-4 flex items-center gap-2 font-bold text-[#0e0f0c] dark:text-white"
+        >
+          View
+          <ArrowRight className="size-3" />
+        </a>
       </div>
     </div>
   );

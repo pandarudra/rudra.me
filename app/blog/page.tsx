@@ -3,6 +3,7 @@ import { Footer } from "@/components/custom/ui/Footer";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Script from "next/script";
+import { leetcode_username } from "@/constants";
 
 const socialPosts = [
   {
@@ -28,7 +29,7 @@ const socialPosts = [
   {
     id: 5,
     type: "twitter",
-    html: `<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Rebuilt major parts of <a href="https://t.co/vJsUcBHaTp">https://t.co/vJsUcBHaTp</a> after a long break <br>Now powered with:<br>• Redis Pub/Sub scaling<br>• Gemini AI vector generation<br>• Prompt compression for lower latency<br>• Solana wallet auth + premium payments<br>Big thanks to <a href="https://twitter.com/uk_2149?ref_src=twsrc%5Etfw">@uk_2149</a> for contributing <a href="https://twitter.com/hashtag/buildinpublic?src=hash&amp;ref_src=twsrc%5Etfw">#buildinpublic</a> <a href="https://t.co/waQhh4GPzv">pic.twitter.com/waQhh4GPzv</a></p>&mdash; Rudra (@rudra_826) <a href="https://twitter.com/rudra_826/status/2058200310112514147?ref_src=twsrc%5Etfw">May 23, 2026</a></blockquote>`,
+    html: `<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Rebuilt major parts of <a href="https://t.co/vJsUcBHaTp">https://t.co/vJsUcBHaTp</a> after a long break <br>Now powered with:<br>• Redis Pub/Sub scaling<br>• Gemini AI vector generation<br>• Prompt compression for lower latency<br>• Solana wallet auth + premium payments<br>Big thanks to <a href="https://twitter.com/uk_2149?ref_src=twsrc%5Etfw">@uk_2149</a> for contributing <a href="https://twitter.com/hashtag/buildinpublic?src=hash&amp;ref_src=twsrc%5Etfw">#buildinpublic</a> <a href="https://t.co/waQhh4GPzv">pic.twitter.com/waQhh4GPzv</a></p>&mdash; Rudra (@${leetcode_username}) <a href="https://twitter.com/${leetcode_username}/status/2058200310112514147?ref_src=twsrc%5Etfw">May 23, 2026</a></blockquote>`,
   }
 ];
 

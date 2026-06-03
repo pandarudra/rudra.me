@@ -36,7 +36,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative z-20 bg-[#0e0f0c] border-t border-white/5 pt-28 pb-16 px-6 overflow-hidden rounded-t-[24px] sm:rounded-t-[24px]">
+    <footer id="contact" className="relative z-20 bg-[#0e0f0c] border-t border-white/5 pt-28 pb-16 px-6 overflow-hidden rounded-t-[24px] sm:rounded-t-[24px]">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
         
         {/* LEFT COLUMN: Contact Form (lg:col-span-7) */}
@@ -105,7 +105,7 @@ export const Footer = () => {
           
           {/* Social Media Node Grid */}
           <FadeIn delay={0.2}>
-            <h3 className="text-[13px] font-bold mb-6 text-[#9fe870] tracking-widest uppercase">{"// Networks"}</h3>
+            <h3 className="text-[13px] font-bold mb-6 text-[#9fe870] tracking-widest uppercase">{"// Socials"}</h3>
             <div className="flex flex-wrap gap-4">
               
               {/* GitHub Link */}
@@ -146,7 +146,7 @@ export const Footer = () => {
 
           {/* Apple-Style Glassmorphic Theme Dock */}
           <FadeIn delay={0.3}>
-            <h3 className="text-[13px] font-bold mb-6 text-[#9fe870] tracking-widest uppercase">{"// Interface Theme"}</h3>
+            <h3 className="text-[13px] font-bold mb-6 text-[#9fe870] tracking-widest uppercase">{"// Theme"}</h3>
             {mounted && (
               <div className="flex bg-white/5 rounded-[24px] p-2 w-fit border border-white/10 relative group">
                 
@@ -183,7 +183,7 @@ export const Footer = () => {
           {/* Copy block */}
           <div className="mt-16 pt-8 border-t border-white/10 text-[#868685] text-sm flex flex-col sm:flex-row justify-between gap-4 w-full font-medium">
             <span>© {new Date().getFullYear()} Rudramadhab Panda. All rights reserved.</span>
-            <span className="text-[13px] font-bold uppercase tracking-widest text-white/40">Designed with absolute precision.</span>
+            {/* <span className="text-[13px] font-bold uppercase tracking-widest text-white/40">Designed with absolute precision.</span> */}
           </div>
         </div>
 

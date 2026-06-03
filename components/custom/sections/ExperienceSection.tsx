@@ -14,7 +14,7 @@ const experiences = [
       "Designed clean, scalable component architectures with efficient state management.",
       "Integrated frontend seamlessly with backend APIs, handling asynchronous data flow and real-time responsiveness."
     ],
-    tech: ["SvelteKit", "TypeScript", "Node.js"]
+    tech: ["SvelteKit", "TypeScript", "Django" , "Docker" , "Azure"]
   },
   {
     role: "Full Stack Developer",
@@ -26,7 +26,7 @@ const experiences = [
       "Engineered backend systems using NestJS, optimizing APIs and enhancing system architecture.",
       "Configured and managed AWS deployments to streamline development, releases, and system reliability."
     ],
-    tech: ["React Native", "NestJS", "AWS"]
+    tech: ["React Native", "NestJS", "AWS" , "Firebase"]
   }
 ];
 

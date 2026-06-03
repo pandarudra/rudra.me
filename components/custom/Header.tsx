@@ -40,6 +40,9 @@ export const Header = () => {
           <a href="#certificates" onClick={(e) => handleScroll(e, 'certificates')} className="text-[13px] sm:text-[14px] font-bold text-[#454745] dark:text-[#a0a0a0] hover:text-[#0e0f0c] dark:hover:text-white transition-colors cursor-pointer">
             Certificates
           </a>
+          <a href="#contact" onClick={(e) => handleScroll(e, 'contact')} className="text-[13px] sm:text-[14px] font-bold text-[#454745] dark:text-[#a0a0a0] hover:text-[#0e0f0c] dark:hover:text-white transition-colors cursor-pointer">
+            Contact
+          </a>
         </nav>
       </div>
     </header>

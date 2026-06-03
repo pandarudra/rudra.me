@@ -222,10 +222,7 @@ export const HeroSection = () => {
 
             <FadeIn y={30} delay={0.22}>
               <p className="text-xl sm:text-2xl text-[#454745] dark:text-[#868685] font-medium max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed tracking-tight">
-                I design and build full-stack products that feel fast, polished,
-                and genuinely useful. From realtime experiences to scalable
-                APIs, I focus on the details that make software memorable.
-              </p>
+               I build digital experiences that don't just work, they resonate. From lightning-fast interfaces to battle-tested backend systems, I create products that are elegant, scalable, and impossible to ignore.    </p>
             </FadeIn>
 
             <FadeIn
@@ -242,18 +239,7 @@ export const HeroSection = () => {
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
-                  // const element = document.getElementById("projects");
-                  // if (element) {
-                  //   const headerOffset = 80;
-                  //   const elementPosition = element.getBoundingClientRect().top;
-                  //   const offsetPosition =
-                  //     elementPosition + window.pageYOffset - headerOffset;
-                  //   window.scrollTo({
-                  //     top: offsetPosition,
-                  //     behavior: "smooth",
-                  //   });
-                  //   window.history.pushState(null, "", "#projects");
-                  // }
+               
                   router.push("/blog");
                 }}
                 className="w-full sm:w-auto group inline-flex h-14 items-center justify-center gap-2 rounded-[24px] border-2 border-[#0e0f0c] dark:border-white bg-transparent px-8 text-[16px] font-bold text-[#0e0f0c] dark:text-white transition-all hover:bg-[#0e0f0c] hover:text-white dark:hover:bg-white dark:hover:text-[#0e0f0c] hover:scale-105 active:scale-95 cursor-pointer"
@@ -261,53 +247,9 @@ export const HeroSection = () => {
                 Explore Blogs
                 <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
               </a>
-              {/* <a
-                href="/files/rudra_resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto group inline-flex h-14 items-center justify-center gap-2 rounded-[24px] border-2 border-[#0e0f0c]/10 dark:border-white/10 bg-transparent px-8 text-[16px] font-bold text-[#454745] dark:text-[#a0a0a0] transition-all hover:bg-[#0e0f0c]/5 dark:hover:bg-white/5 hover:text-[#0e0f0c] dark:hover:text-white hover:border-[#0e0f0c]/20 dark:hover:border-white/20 hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                Resume
-                <Download className="size-4 transition-transform group-hover:-translate-y-1" />
-              </a> */}
+         
             </FadeIn>
 
-            {/* <FadeIn
-              y={16}
-              delay={0.42}
-              className="mt-12 flex flex-wrap justify-center lg:justify-start gap-3 max-w-3xl"
-            >
-              {heroTags.map((tag, i) => (
-                <motion.span
-                  whileHover={{ y: -2, scale: 1.03 }}
-                  key={i}
-                  className="px-5 py-2.5 rounded-full border-2 border-[#0e0f0c]/5 dark:border-white/10 bg-white/40 dark:bg-white/5 text-[14px] font-bold tracking-tight text-[#454745] dark:text-[#a0a0a0] transition-all cursor-default select-none hover:bg-white dark:hover:bg-white/10 hover:border-[#0e0f0c]/10 dark:hover:border-white/20"
-                >
-                  {tag}
-                </motion.span>
-              ))}
-            </FadeIn> */}
-
-            <FadeIn
-              y={18}
-              delay={0.5}
-              className="mt-10 grid gap-4 sm:grid-cols-3 max-w-3xl mx-auto lg:mx-0"
-            >
-              {heroStats.map((stat) => (
-                <motion.div
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  key={stat.label}
-                  className="rounded-[24px] bg-white dark:bg-[#121311] p-6 text-left shadow-sm border border-[#0e0f0c]/5 dark:border-white/5 transition-all hover:shadow-xl hover:border-[#9fe870]/50"
-                >
-                  <div className="text-3xl font-black tracking-tight text-[#0e0f0c] dark:text-white">
-                    {stat.value}
-                  </div>
-                  <div className="mt-2 text-[14px] text-[#454745] dark:text-[#868685] font-bold">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </FadeIn>
           </div>
 
           <FadeIn y={25} delay={0.28} className="w-full flex justify-center lg:justify-end">

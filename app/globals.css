@@ -247,3 +247,9 @@
       "Segoe UI Symbol";
   }
 }
+
+@media (max-width: 768px) {
+  #oneko {
+    display: none !important;
+  }
+}

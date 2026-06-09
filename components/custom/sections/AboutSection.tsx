@@ -30,7 +30,7 @@ export const AboutSection = () => {
           <div className="lg:col-span-7 flex flex-col gap-6">
 
             {/* Philosophy Card */}
-            <FadeIn delay={0.1} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] flex flex-col justify-between flex-1 shadow-sm transition-all hover:shadow-xl hover:border-[#054d28]/40 dark:hover:border-[#9fe870]/40">
+            <FadeIn delay={0.1} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] hidden md:flex flex-col justify-between flex-1 shadow-sm transition-all hover:shadow-xl hover:border-[#054d28]/40 dark:hover:border-[#9fe870]/40">
               <div>
                 <span className="text-[11px] font-bold uppercase tracking-widest text-[#054d28] dark:text-[#9fe870] mb-5 block">Core Philosophy</span>
                 <AnimatedText

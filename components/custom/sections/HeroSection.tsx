@@ -252,7 +252,7 @@ export const HeroSection = () => {
 
           </div>
 
-          <FadeIn y={25} delay={0.28} className="w-full flex justify-center lg:justify-end">
+          <FadeIn  y={25} delay={0.28} className="w-full hidden md:flex justify-center lg:justify-end ">
             <CleanDevCard />
           </FadeIn>
         </div>

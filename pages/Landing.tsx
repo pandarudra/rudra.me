@@ -25,7 +25,8 @@ const Landing = () => {
   return (
     <div>
       {/* cat */}
-      <OnekoCat />
+     <OnekoCat />
+     
       <DottedGlowBackground
         className="pointer-events-none mask-radial-to-90% mask-radial-at-center opacity-20 dark:opacity-100"
         opacity={0.2}

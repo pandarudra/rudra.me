@@ -179,6 +179,19 @@ export const SkillsLeetCodeSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const cacheKey = `leetcode_data_${leetcode_username}`;
+        const cached = localStorage.getItem(cacheKey);
+        
+        if (cached) {
+          const { timestamp, data } = JSON.parse(cached);
+          // Cache for 1 hour (3600000 ms)
+          if (Date.now() - timestamp < 3600000) {
+            setLcData(data);
+            setLoading(false);
+            return;
+          }
+        }
+
         const [statsRes, contestRes] = await Promise.all([
           fetch(`https://leetcode-api-faisalshohag.vercel.app/${leetcode_username}`),
           fetch(`https://alfa-leetcode-api.onrender.com/${leetcode_username}/contest`)
@@ -203,7 +216,7 @@ export const SkillsLeetCodeSection = () => {
             }))
           : [];
 
-        setLcData({
+        const parsedData = {
           totalSolved: data.totalSolved || 0,
           easySolved: data.easySolved || 0,
           totalEasy: data.totalEasy || 1000,
@@ -220,7 +233,17 @@ export const SkillsLeetCodeSection = () => {
           totalParticipants: contestData.totalParticipants || 0,
           contestTopPercentage: contestData.contestTopPercentage || 0,
           contestParticipation: validParticipation,
-        });
+        };
+
+        // Only cache if we actually got valid data to prevent caching empty/error states
+        if (data.totalSolved || contestData.contestAttend) {
+          localStorage.setItem(cacheKey, JSON.stringify({
+            timestamp: Date.now(),
+            data: parsedData
+          }));
+        }
+
+        setLcData(parsedData);
       } catch (err) {
         console.error("Failed to fetch LeetCode data", err);
       } finally {
@@ -285,12 +308,13 @@ export const SkillsLeetCodeSection = () => {
         </div>
 
         {/* LEETCODE SECTION */}
-        <div>
-          <FadeIn>
-            <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-[#0e0f0c] dark:text-white mb-10">
-              LeetCode
-            </h2>
-          </FadeIn>
+        {(!loading && (!lcData || lcData.totalSolved === 0)) ? null : (
+          <div>
+            <FadeIn>
+              <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-[#0e0f0c] dark:text-white mb-10">
+                LeetCode
+              </h2>
+            </FadeIn>
           
           {/* Main LeetCode Card (Total Solved & Rings) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -418,7 +442,8 @@ export const SkillsLeetCodeSection = () => {
             </div>
           </FadeIn>
 
-        </div>
+          </div>
+        )}
         
       </div>
     </section>

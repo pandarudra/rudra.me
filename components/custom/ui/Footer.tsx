@@ -3,9 +3,10 @@
 import { useMsg } from "@/hooks";
 import { FadeIn } from "./FadeIn";
 import { motion } from "motion/react";
-import { Github, Linkedin, Mail, Send, Moon, Sun, Monitor } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Moon, Sun, Monitor, Twitter } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState, useSyncExternalStore } from "react";
+import { toast } from "sonner";
 
 export const Footer = () => {
   const { theme, setTheme } = useTheme();
@@ -26,10 +27,12 @@ export const Footer = () => {
     setIsSubmitting(true);
     try {
       await send(email, message);
+      toast.success("Message sent successfully!");
       setEmail("");
       setMessage("");
     } catch (err) {
       console.error(err);
+      toast.error("Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -140,6 +143,19 @@ export const Footer = () => {
               >
                 <Mail className="w-6 h-6" />
                 <span className="sr-only">Email</span>
+              </motion.a>
+
+
+              {/* X Link */}
+              <motion.a
+                whileHover={{ y: -4 }}
+                href="https://x.com/rudra_826"
+                target="_blank"
+                rel="noreferrer"
+                className="p-5 rounded-[24px] bg-white/5 border border-white/10 text-white hover:bg-[#9fe870] hover:text-[#0e0f0c] hover:border-[#9fe870] transition-all duration-300 flex items-center justify-center"
+              >
+                <Twitter className="w-6 h-6" />
+                <span className="sr-only">X</span>
               </motion.a>
             </div>
           </FadeIn>

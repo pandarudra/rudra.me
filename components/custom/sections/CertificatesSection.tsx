@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FadeIn } from "../ui/FadeIn";
 import { ArrowRight, Award, ChevronLeft, ChevronRight } from "lucide-react";
 import { certificates } from "@/constants/certificate.c";
@@ -22,19 +22,35 @@ const getIconClass = (iconColor: string) => {
   return "text-[#0e0f0c] dark:text-white";
 };
 
-const StaticCard = ({ cert }: { cert: any }) => {
+interface CertificateData {
+  title: string;
+  issuer: string;
+  date: string;
+  color?: string;
+  iconColor: string;
+  url?: string;
+  image_url?: string;
+}
+
+const StaticCard = ({ cert }: { cert: CertificateData }) => {
   const bgClass = getBgClass(cert.iconColor);
   const iconColor = getIconClass(cert.iconColor);
 
   return (
     <div className={`flex-shrink-0 w-[300px] sm:w-[360px] h-[240px] p-8 rounded-[24px] border ${bgClass} flex flex-col justify-between items-start transition-all duration-300`}>
       <div className="w-full">
-        <div className={`p-3 rounded-[14px] bg-white dark:bg-[#0a0a0a] w-fit mb-6 shadow-sm border border-[#0e0f0c]/5 dark:border-white/5`}>
-          <Award className={`w-5 h-5 ${iconColor}`} />
-        </div>
+        {cert.image_url ? (
+          <div className="w-12 h-12 mb-6 rounded-full overflow-hidden bg-white/50 dark:bg-black/50 p-1">
+            <img src={cert.image_url} alt={cert.title} className="w-full h-full object-contain" />
+          </div>
+        ) : (
+          <div className={`p-3 rounded-[14px] bg-white dark:bg-[#0a0a0a] w-fit mb-6 shadow-sm border border-[#0e0f0c]/5 dark:border-white/5`}>
+            <Award className={`w-5 h-5 ${iconColor}`} />
+          </div>
+        )}
         
-        <h3 className="text-[18px] sm:text-[20px] font-bold mb-2 text-[#0e0f0c] dark:text-white tracking-tight leading-snug">{cert.title}</h3>
-        <p className="text-[#454745] dark:text-[#868685] font-medium text-[13px]">
+        <h3 className="text-[18px] sm:text-[20px] font-bold mb-2 text-[#0e0f0c] dark:text-white tracking-tight leading-snug line-clamp-2">{cert.title}</h3>
+        <p className="text-[#454745] dark:text-[#868685] font-medium text-[13px] truncate">
           {cert.issuer}
         </p>
       </div>
@@ -59,6 +75,45 @@ const StaticCard = ({ cert }: { cert: any }) => {
 
 export const CertificatesSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [allCertificates, setAllCertificates] = useState<CertificateData[]>(certificates);
+
+  useEffect(() => {
+    const fetchCredlyBadges = async () => {
+      try {
+        const res = await fetch("/api/credly");
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.data) {
+          const credlyCerts: CertificateData[] = data.data.map((badge: {
+            badge_template: { name: string; image_url?: string };
+            issuer?: { entities?: { entity?: { name: string } }[]; summary?: string };
+            issued_at_date?: string;
+            id: string;
+            image_url?: string;
+          }) => {
+            return {
+              title: badge.badge_template.name,
+              issuer: badge.issuer?.entities?.[0]?.entity?.name || badge.issuer?.summary?.replace('issued by ', '') || "Credly",
+              date: badge.issued_at_date ? badge.issued_at_date.split('-')[0] : "",
+              color: "from-amber-500/20 to-amber-500/5",
+              iconColor: "text-amber-500",
+              url: `https://www.credly.com/badges/${badge.id}/public_url`,
+              image_url: badge.image_url || badge.badge_template?.image_url,
+            };
+          });
+          setAllCertificates(prev => {
+            // Avoid duplicates if called twice in dev mode
+            const existingTitles = new Set(prev.map(c => c.title));
+            const newCerts = credlyCerts.filter((c) => !existingTitles.has(c.title));
+            return [...prev, ...newCerts];
+          });
+        }
+      } catch (err) {
+        console.error("Failed to fetch credly badges", err);
+      }
+    };
+    fetchCredlyBadges();
+  }, []);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -103,7 +158,7 @@ export const CertificatesSection = () => {
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pr-6 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
-            {certificates.map((cert, index) => (
+            {allCertificates.map((cert, index) => (
               <div key={index} className="snap-start">
                 <FadeIn delay={index * 0.1} y={20}>
                   <StaticCard cert={cert} />

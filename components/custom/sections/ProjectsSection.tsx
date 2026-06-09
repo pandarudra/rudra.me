@@ -4,12 +4,12 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState } from "react";
 import { ExternalLink, Github, Info } from "lucide-react";
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { FadeIn } from "../ui/FadeIn";
 import { projects } from "@/constants";
 
@@ -60,7 +60,7 @@ const ProjectCard = ({
               {project.num}
             </span>
             <div>
-              <p className="text-sm font-bold tracking-widest uppercase text-[#9fe870] mb-1">
+              <p className="text-sm font-bold tracking-widest uppercase text-[#054d28] dark:text-[#9fe870] mb-1">
                 {project.category}
               </p>
               <h3 className="text-3xl sm:text-4xl font-black mb-2 text-[#0e0f0c] dark:text-white">
@@ -76,7 +76,7 @@ const ProjectCard = ({
               <Github className="size-4" />
               GitHub
             </a>
-            <a href={project.live} target="_blank" rel="noreferrer" className="inline-flex h-10 items-center justify-center gap-2 rounded-[24px] bg-[#9fe870] px-5 text-[14px] font-bold text-[#0e0f0c] transition-all hover:bg-[#cdffad] hover:scale-105 active:scale-95 shadow-lg shadow-[#9fe870]/20">
+            <a href={project.live} target="_blank" rel="noreferrer" className="inline-flex h-10 items-center justify-center gap-2 rounded-[24px] bg-[#054d28] dark:bg-[#9fe870] px-5 text-[14px] font-bold text-white dark:text-[#0e0f0c] transition-all hover:bg-[#2ead4b] dark:hover:bg-[#cdffad] hover:scale-105 active:scale-95 shadow-lg shadow-[#054d28]/20 dark:shadow-[#9fe870]/20">
               <ExternalLink className="size-4" />
               Live
             </a>
@@ -133,7 +133,7 @@ const ProjectCard = ({
             <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end">
               <div className="max-w-md rounded-[24px] border border-white/20 bg-black/40 p-6 backdrop-blur-xl text-white shadow-2xl">
-                <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-[#9fe870] mb-3">
+                <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-[#054d28] dark:text-[#9fe870] mb-3">
                   About this project
                 </p>
                 <p className="text-lg sm:text-xl font-medium leading-relaxed text-white">
@@ -152,19 +152,19 @@ const ProjectCard = ({
           </div>
         </div>
 
-        <Sheet open={infoOpen} onOpenChange={setInfoOpen}>
-          <SheetContent className="sm:max-w-xl bg-white dark:bg-[#0e0f0c] border-l border-[#0e0f0c]/10 dark:border-white/10">
-            <SheetHeader className="pt-10 pr-10">
-              <SheetTitle className="text-3xl sm:text-4xl font-black text-[#0e0f0c] dark:text-white">
+        <Dialog open={infoOpen} onOpenChange={setInfoOpen}>
+          <DialogContent className="sm:max-w-xl bg-white dark:bg-[#0e0f0c] border border-[#0e0f0c]/10 dark:border-white/10 rounded-[24px]">
+            <DialogHeader className="pt-2">
+              <DialogTitle className="text-3xl sm:text-4xl font-black text-[#0e0f0c] dark:text-white">
                 {project.name}
-              </SheetTitle>
-              <SheetDescription className="text-[16px] font-bold uppercase tracking-widest text-[#9fe870]">
+              </DialogTitle>
+              <DialogDescription className="text-[16px] font-bold uppercase tracking-widest text-[#054d28] dark:text-[#9fe870]">
                 {project.category}
-              </SheetDescription>
-            </SheetHeader>
+              </DialogDescription>
+            </DialogHeader>
 
-            <div className="px-4 pb-4 space-y-6 mt-6">
-              <div className="rounded-[24px] overflow-hidden border border-[#0e0f0c]/10 dark:border-white/10">
+            <div className="space-y-6 mt-4 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-[#0e0f0c]/10 dark:scrollbar-thumb-white/10 pr-2">
+              <div className="rounded-[16px] overflow-hidden border border-[#0e0f0c]/10 dark:border-white/10">
                 <div
                   className="aspect-16/10 bg-cover bg-center"
                   style={{ backgroundImage: `url(${project.image})` }}
@@ -178,14 +178,14 @@ const ProjectCard = ({
                   <Github className="size-5" />
                   Open GitHub
                 </a>
-                <a href={project.live} target="_blank" rel="noreferrer" className="inline-flex h-12 items-center justify-center gap-2 rounded-[24px] bg-[#9fe870] px-5 text-[15px] font-bold text-[#0e0f0c] transition-all hover:bg-[#cdffad] shadow-lg shadow-[#9fe870]/20">
+                <a href={project.live} target="_blank" rel="noreferrer" className="inline-flex h-12 items-center justify-center gap-2 rounded-[24px] bg-[#054d28] dark:bg-[#9fe870] px-5 text-[15px] font-bold text-white dark:text-[#0e0f0c] transition-all hover:bg-[#2ead4b] dark:hover:bg-[#cdffad] shadow-lg shadow-[#054d28]/20 dark:shadow-[#9fe870]/20">
                   <ExternalLink className="size-5" />
                   Open Live Site
                 </a>
               </div>
             </div>
-          </SheetContent>
-        </Sheet>
+          </DialogContent>
+        </Dialog>
       </motion.div>
     </div>
   );

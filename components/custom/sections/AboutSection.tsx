@@ -30,9 +30,9 @@ export const AboutSection = () => {
           <div className="lg:col-span-7 flex flex-col gap-6">
 
             {/* Philosophy Card */}
-            <FadeIn delay={0.1} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] flex flex-col justify-between flex-1 shadow-sm transition-all hover:shadow-xl hover:border-[#9fe870]/40">
+            <FadeIn delay={0.1} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] flex flex-col justify-between flex-1 shadow-sm transition-all hover:shadow-xl hover:border-[#054d28]/40 dark:hover:border-[#9fe870]/40">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#9fe870] mb-5 block">Core Philosophy</span>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#054d28] dark:text-[#9fe870] mb-5 block">Core Philosophy</span>
                 <AnimatedText
                   text="I thrive at the intersection of performance and aesthetics. From orchestrating distributed backends to compiling lightning-fast reactive UIs, I engineer digital experiences that scale without compromising on pixel-perfect design."
                   className="text-2xl sm:text-3xl font-black leading-relaxed text-[#0e0f0c] dark:text-white"
@@ -41,9 +41,9 @@ export const AboutSection = () => {
             </FadeIn>
 
             {/* coding metrics */}
-            <FadeIn delay={0.2} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] shadow-sm transition-all hover:shadow-xl hover:border-[#9fe870]/40">
+            <FadeIn delay={0.2} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] shadow-sm transition-all hover:shadow-xl hover:border-[#054d28]/40 dark:hover:border-[#9fe870]/40">
               <div className="flex items-center gap-3 mb-8">
-                <Code2 className="w-6 h-6 text-[#9fe870]" />
+                <Code2 className="w-6 h-6 text-[#054d28] dark:text-[#9fe870]" />
                 <h3 className="text-xl font-black text-[#0e0f0c] dark:text-white">Competitive & Algo Stats</h3>
               </div>
 
@@ -51,7 +51,7 @@ export const AboutSection = () => {
                 {/* LeetCode Stat */}
                 <div>
                   <div className="flex justify-between text-[14px] mb-2 font-bold">
-                    <span className="text-[#0e0f0c] dark:text-white">LeetCode Rating: <span className="text-[#9fe870]">1717</span></span>
+                    <span className="text-[#0e0f0c] dark:text-white">LeetCode Rating: <span className="text-[#054d28] dark:text-[#9fe870]">1717</span></span>
                     <span className="text-[#454745] dark:text-[#868685]">Top 11% Globally</span>
                   </div>
                   <div className="w-full bg-black/5 dark:bg-white/5 h-2 rounded-full overflow-hidden">
@@ -60,7 +60,7 @@ export const AboutSection = () => {
                       whileInView={{ width: "89%" }}
                       viewport={{ once: true }}
                       transition={{ duration: 1.2, ease: "easeOut", delay: 0.1 }}
-                      className="bg-[#9fe870] h-full rounded-full"
+                      className="bg-[#054d28] dark:bg-[#9fe870] h-full rounded-full"
                     />
                   </div>
                 </div>
@@ -77,7 +77,7 @@ export const AboutSection = () => {
                       whileInView={{ width: "98%" }}
                       viewport={{ once: true }}
                       transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-                      className="bg-[#9fe870] h-full rounded-full"
+                      className="bg-[#054d28] dark:bg-[#9fe870] h-full rounded-full"
                     />
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export const AboutSection = () => {
                       whileInView={{ width: "93.3%" }}
                       viewport={{ once: true }}
                       transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-                      className="bg-[#9fe870] h-full rounded-full"
+                      className="bg-[#054d28] dark:bg-[#9fe870] h-full rounded-full"
                     />
                   </div>
                 </div>
@@ -106,9 +106,9 @@ export const AboutSection = () => {
           <div className="lg:col-span-5 flex flex-col gap-6">
 
             {/* Education Card */}
-            <FadeIn delay={0.3} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] shadow-sm transition-all hover:shadow-xl hover:border-[#9fe870]/40">
+            <FadeIn delay={0.3} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] shadow-sm transition-all hover:shadow-xl hover:border-[#054d28]/40 dark:hover:border-[#9fe870]/40">
               <div className="flex items-center gap-3 mb-8">
-                <GraduationCap className="w-6 h-6 text-[#9fe870]" />
+                <GraduationCap className="w-6 h-6 text-[#054d28] dark:text-[#9fe870]" />
                 <h3 className="text-xl font-black text-[#0e0f0c] dark:text-white">Education</h3>
               </div>
 
@@ -119,7 +119,7 @@ export const AboutSection = () => {
                   <span>Odisha University of Technology and Research</span>
                 </div>
 
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-[24px] bg-[#9fe870]/10 border border-[#9fe870]/20 text-[14px] font-black text-[#9fe870]">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-[24px] bg-[#054d28]/10 dark:bg-[#9fe870]/10 border border-[#054d28]/20 dark:border-[#9fe870]/20 text-[14px] font-black text-[#054d28] dark:text-[#9fe870]">
                   <Award className="w-4 h-4" />
                   <span>CGPA: 9.25 / 10</span>
                 </div>
@@ -127,15 +127,15 @@ export const AboutSection = () => {
             </FadeIn>
 
             {/* Achievements Card */}
-            <FadeIn delay={0.4} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] flex-1 shadow-sm transition-all hover:shadow-xl hover:border-[#9fe870]/40">
+            <FadeIn delay={0.4} className="p-8 sm:p-10 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] flex-1 shadow-sm transition-all hover:shadow-xl hover:border-[#054d28]/40 dark:hover:border-[#9fe870]/40">
               <div className="flex items-center gap-3 mb-8">
-                <Trophy className="w-6 h-6 text-[#9fe870]" />
+                <Trophy className="w-6 h-6 text-[#054d28] dark:text-[#9fe870]" />
                 <h3 className="text-xl font-black text-[#0e0f0c] dark:text-white">Key Milestones</h3>
               </div>
 
               <ul className="space-y-6">
                 <li className="flex items-start gap-4 group/item">
-                  <div className="mt-1 bg-[#9fe870]/10 p-1.5 rounded-full text-[#9fe870] group-hover/item:scale-110 transition-transform">
+                  <div className="mt-1 bg-[#054d28]/10 dark:bg-[#9fe870]/10 p-1.5 rounded-full text-[#054d28] dark:text-[#9fe870] group-hover/item:scale-110 transition-transform">
                     <ChevronRight className="w-4 h-4" />
                   </div>
                   <div>
@@ -145,7 +145,7 @@ export const AboutSection = () => {
                 </li>
 
                 <li className="flex items-start gap-4 group/item">
-                  <div className="mt-1 bg-[#9fe870]/10 p-1.5 rounded-full text-[#9fe870] group-hover/item:scale-110 transition-transform">
+                  <div className="mt-1 bg-[#054d28]/10 dark:bg-[#9fe870]/10 p-1.5 rounded-full text-[#054d28] dark:text-[#9fe870] group-hover/item:scale-110 transition-transform">
                     <ChevronRight className="w-4 h-4" />
                   </div>
                   <div>
@@ -155,7 +155,7 @@ export const AboutSection = () => {
                 </li>
 
                 <li className="flex items-start gap-4 group/item">
-                  <div className="mt-1 bg-[#9fe870]/10 p-1.5 rounded-full text-[#9fe870] group-hover/item:scale-110 transition-transform">
+                  <div className="mt-1 bg-[#054d28]/10 dark:bg-[#9fe870]/10 p-1.5 rounded-full text-[#054d28] dark:text-[#9fe870] group-hover/item:scale-110 transition-transform">
                     <ChevronRight className="w-4 h-4" />
                   </div>
                   <div>

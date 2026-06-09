@@ -54,7 +54,7 @@ export default function BlogPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {socialPosts.map((post, index) => (
             <FadeIn key={post.id} delay={0.2 + index * 0.1}>
-              <div className="p-4 sm:p-6 rounded-[24px] bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 shadow-sm hover:shadow-xl hover:border-[#9fe870]/40 min-h-[400px] flex items-center justify-center overflow-hidden relative transition-all duration-300 group">
+              <div className="p-4 sm:p-6 rounded-[24px] bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 shadow-sm hover:shadow-xl hover:border-[#054d28]/40 dark:hover:border-[#9fe870]/40 min-h-[400px] flex items-center justify-center overflow-hidden relative transition-all duration-300 group">
                 <div className="absolute inset-0 flex items-center justify-center -z-10 text-[#868685] text-sm text-center px-6 font-medium">
                   <div>
                     Loading post...<br />

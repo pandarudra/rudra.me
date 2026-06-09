@@ -39,19 +39,19 @@ export const Footer = () => {
   };
 
   return (
-    <footer id="contact" className="relative z-20 bg-[#0e0f0c] border-t border-white/5 pt-28 pb-16 px-6 overflow-hidden rounded-t-[24px] sm:rounded-t-[24px]">
+    <footer id="contact" className="relative z-20 bg-white dark:bg-[#0e0f0c] border-t border-black/5 dark:border-white/5 pt-28 pb-16 px-6 overflow-hidden rounded-t-[24px]">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
         
         {/* LEFT COLUMN: Contact Form (lg:col-span-7) */}
         <div className="lg:col-span-7">
           <FadeIn>
             <div className="flex items-center gap-3 mb-6">
-              <h2 className="text-5xl sm:text-7xl font-black tracking-tight text-white">
+              <h2 className="text-5xl sm:text-7xl font-black tracking-tight text-[#0e0f0c] dark:text-white">
                 Let&apos;s Connect
               </h2>
             </div>
             
-            <p className="text-[#868685] mb-10 max-w-lg text-lg sm:text-xl font-medium leading-relaxed">
+            <p className="text-[#454745] dark:text-[#868685] mb-10 max-w-lg text-lg sm:text-xl font-medium leading-relaxed">
               I&apos;m always open to discussing full-stack engineering roles, open-source initiatives, or contract projects. Drop me a line!
             </p>
 
@@ -65,7 +65,7 @@ export const Footer = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-6 py-4 rounded-[24px] bg-white/5 border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#9fe870]/40 focus:border-[#9fe870]/50 transition-all duration-300 group-hover:border-white/20"
+                  className="w-full px-6 py-4 rounded-[24px] bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[#0e0f0c] dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#054d28]/40 dark:focus:ring-[#054d28]/40 dark:ring-[#9fe870]/40 focus:border-[#054d28]/50 dark:focus:border-[#054d28]/50 dark:border-[#9fe870]/50 transition-all duration-300 group-hover:border-black/20 dark:group-hover:border-white/20"
                 />
               </div>
 
@@ -78,7 +78,7 @@ export const Footer = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   required
                   rows={4}
-                  className="w-full px-6 py-4 rounded-[24px] bg-white/5 border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#9fe870]/40 focus:border-[#9fe870]/50 transition-all duration-300 resize-none group-hover:border-white/20"
+                  className="w-full px-6 py-4 rounded-[24px] bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[#0e0f0c] dark:text-white placeholder:text-black/40 dark:placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-[#054d28]/40 dark:focus:ring-[#054d28]/40 dark:ring-[#9fe870]/40 focus:border-[#054d28]/50 dark:focus:border-[#054d28]/50 dark:border-[#9fe870]/50 transition-all duration-300 resize-none group-hover:border-black/20 dark:group-hover:border-white/20"
                 />
               </div>
 
@@ -88,7 +88,7 @@ export const Footer = () => {
                 whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-[#9fe870] text-[#0e0f0c] font-black rounded-[24px] hover:bg-[#cdffad] transition-all w-full sm:w-auto self-start shadow-lg shadow-[#9fe870]/10 cursor-pointer select-none"
+                className="group relative flex items-center justify-center gap-3 px-8 py-4 bg-[#054d28] dark:bg-[#9fe870] text-white dark:text-[#0e0f0c] font-black rounded-[24px] hover:bg-[#2ead4b] dark:hover:bg-[#cdffad] transition-all w-full sm:w-auto self-start shadow-lg shadow-[#054d28]/20 dark:shadow-[#9fe870]/10 cursor-pointer select-none"
               >
                 {isSubmitting ? (
                   <span className="w-5 h-5 border-2 border-[#0e0f0c] border-t-transparent rounded-full animate-spin" />
@@ -108,7 +108,7 @@ export const Footer = () => {
           
           {/* Social Media Node Grid */}
           <FadeIn delay={0.2}>
-            <h3 className="text-[13px] font-bold mb-6 text-[#9fe870] tracking-widest uppercase">{"// Socials"}</h3>
+            <h3 className="text-[13px] font-bold mb-6 text-[#054d28] dark:text-[#9fe870] tracking-widest uppercase">{"// Socials"}</h3>
             <div className="flex flex-wrap gap-4">
               
               {/* GitHub Link */}
@@ -117,7 +117,7 @@ export const Footer = () => {
                 href="https://github.com/pandarudra"
                 target="_blank"
                 rel="noreferrer"
-                className="p-5 rounded-[24px] bg-white/5 border border-white/10 text-white hover:bg-[#9fe870] hover:text-[#0e0f0c] hover:border-[#9fe870] transition-all duration-300 flex items-center justify-center"
+                className="p-5 rounded-[24px] bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[#0e0f0c] dark:text-white hover:bg-[#054d28] dark:hover:bg-[#054d28] dark:bg-[#9fe870] hover:text-white dark:hover:text-[#0e0f0c] hover:border-[#054d28] dark:hover:border-[#054d28] dark:border-[#9fe870] transition-all duration-300 flex items-center justify-center"
               >
                 <Github className="w-6 h-6" />
                 <span className="sr-only">GitHub</span>
@@ -129,7 +129,7 @@ export const Footer = () => {
                 href="https://www.linkedin.com/in/rudra826/"
                 target="_blank"
                 rel="noreferrer"
-                className="p-5 rounded-[24px] bg-white/5 border border-white/10 text-white hover:bg-[#9fe870] hover:text-[#0e0f0c] hover:border-[#9fe870] transition-all duration-300 flex items-center justify-center"
+                className="p-5 rounded-[24px] bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[#0e0f0c] dark:text-white hover:bg-[#054d28] dark:hover:bg-[#054d28] dark:bg-[#9fe870] hover:text-white dark:hover:text-[#0e0f0c] hover:border-[#054d28] dark:hover:border-[#054d28] dark:border-[#9fe870] transition-all duration-300 flex items-center justify-center"
               >
                 <Linkedin className="w-6 h-6" />
                 <span className="sr-only">LinkedIn</span>
@@ -139,7 +139,7 @@ export const Footer = () => {
               <motion.a
                 whileHover={{ y: -4 }}
                 href="mailto:rudrapanda8206@gmail.com"
-                className="p-5 rounded-[24px] bg-white/5 border border-white/10 text-white hover:bg-[#9fe870] hover:text-[#0e0f0c] hover:border-[#9fe870] transition-all duration-300 flex items-center justify-center"
+                className="p-5 rounded-[24px] bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[#0e0f0c] dark:text-white hover:bg-[#054d28] dark:hover:bg-[#054d28] dark:bg-[#9fe870] hover:text-white dark:hover:text-[#0e0f0c] hover:border-[#054d28] dark:hover:border-[#054d28] dark:border-[#9fe870] transition-all duration-300 flex items-center justify-center"
               >
                 <Mail className="w-6 h-6" />
                 <span className="sr-only">Email</span>
@@ -152,7 +152,7 @@ export const Footer = () => {
                 href="https://x.com/rudra_826"
                 target="_blank"
                 rel="noreferrer"
-                className="p-5 rounded-[24px] bg-white/5 border border-white/10 text-white hover:bg-[#9fe870] hover:text-[#0e0f0c] hover:border-[#9fe870] transition-all duration-300 flex items-center justify-center"
+                className="p-5 rounded-[24px] bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-[#0e0f0c] dark:text-white hover:bg-[#054d28] dark:hover:bg-[#054d28] dark:bg-[#9fe870] hover:text-white dark:hover:text-[#0e0f0c] hover:border-[#054d28] dark:hover:border-[#054d28] dark:border-[#9fe870] transition-all duration-300 flex items-center justify-center"
               >
                 <Twitter className="w-6 h-6" />
                 <span className="sr-only">X</span>
@@ -162,14 +162,14 @@ export const Footer = () => {
 
           {/* Apple-Style Glassmorphic Theme Dock */}
           <FadeIn delay={0.3}>
-            <h3 className="text-[13px] font-bold mb-6 text-[#9fe870] tracking-widest uppercase">{"// Theme"}</h3>
+            <h3 className="text-[13px] font-bold mb-6 text-[#054d28] dark:text-[#9fe870] tracking-widest uppercase">{"// Theme"}</h3>
             {mounted && (
-              <div className="flex bg-white/5 rounded-[24px] p-2 w-fit border border-white/10 relative group">
+              <div className="flex bg-black/5 dark:bg-white/5 rounded-[24px] p-2 w-fit border border-black/10 dark:border-white/10 relative group">
                 
                 {/* Light mode select */}
                 <button
                   onClick={() => setTheme("light")}
-                  className={`p-3 rounded-[24px] transition-all relative ${theme === "light" ? "bg-[#9fe870] text-[#0e0f0c]" : "text-[#868685] hover:text-white hover:bg-white/10"}`}
+                  className={`p-3 rounded-[24px] transition-all relative ${theme === "light" ? "bg-[#054d28] dark:bg-[#9fe870] text-white dark:text-[#0e0f0c]" : "text-[#454745] dark:text-[#868685] hover:text-[#0e0f0c] dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10"}`}
                   aria-label="Light Theme"
                 >
                   <Sun className="w-5 h-5" />
@@ -178,7 +178,7 @@ export const Footer = () => {
                 {/* Dark mode select */}
                 <button
                   onClick={() => setTheme("dark")}
-                  className={`p-3 rounded-[24px] transition-all relative ${theme === "dark" ? "bg-[#9fe870] text-[#0e0f0c]" : "text-[#868685] hover:text-white hover:bg-white/10"}`}
+                  className={`p-3 rounded-[24px] transition-all relative ${theme === "dark" ? "bg-[#054d28] dark:bg-[#9fe870] text-white dark:text-[#0e0f0c]" : "text-[#454745] dark:text-[#868685] hover:text-[#0e0f0c] dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10"}`}
                   aria-label="Dark Theme"
                 >
                   <Moon className="w-5 h-5" />
@@ -187,7 +187,7 @@ export const Footer = () => {
                 {/* System mode select */}
                 <button
                   onClick={() => setTheme("system")}
-                  className={`p-3 rounded-[24px] transition-all relative ${theme === "system" ? "bg-[#9fe870] text-[#0e0f0c]" : "text-[#868685] hover:text-white hover:bg-white/10"}`}
+                  className={`p-3 rounded-[24px] transition-all relative ${theme === "system" ? "bg-[#054d28] dark:bg-[#9fe870] text-white dark:text-[#0e0f0c]" : "text-[#454745] dark:text-[#868685] hover:text-[#0e0f0c] dark:hover:text-white hover:bg-black/10 dark:hover:bg-white/10"}`}
                   aria-label="System Theme"
                 >
                   <Monitor className="w-5 h-5" />
@@ -197,7 +197,7 @@ export const Footer = () => {
           </FadeIn>
 
           {/* Copy block */}
-          <div className="mt-16 pt-8 border-t border-white/10 text-[#868685] text-sm flex flex-col sm:flex-row justify-between gap-4 w-full font-medium">
+          <div className="mt-16 pt-8 border-t border-black/10 dark:border-white/10 text-[#454745] dark:text-[#868685] text-sm flex flex-col sm:flex-row justify-between gap-4 w-full font-medium">
             <span>© {new Date().getFullYear()} Rudramadhab Panda. All rights reserved.</span>
             {/* <span className="text-[13px] font-bold uppercase tracking-widest text-white/40">Designed with absolute precision.</span> */}
           </div>

@@ -1,12 +1,30 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 import { useRef } from "react";
 
 interface AnimatedTextProps {
   text: string;
   className?: string;
 }
+
+const Word = ({ word, index, total, scrollYProgress }: { word: string, index: number, total: number, scrollYProgress: MotionValue<number> }) => {
+  const start = index / total;
+  const end = start + 0.2; // slightly smoother fade overlap
+  const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1]);
+
+  return (
+    <span className="relative inline-block mr-[0.25em]">
+      <span className="invisible">{word}</span>
+      <motion.span
+        style={{ opacity, willChange: "opacity" }}
+        className="absolute left-0 top-0"
+      >
+        {word}
+      </motion.span>
+    </span>
+  );
+};
 
 export const AnimatedText = ({ text, className = "" }: AnimatedTextProps) => {
   const containerRef = useRef<HTMLParagraphElement>(null);
@@ -16,28 +34,19 @@ export const AnimatedText = ({ text, className = "" }: AnimatedTextProps) => {
     offset: ["start 0.8", "end 0.2"],
   });
 
-  const characters = text.split("");
+  const words = text.split(" ");
 
   return (
-    <p ref={containerRef} className={className}>
-      {characters.map((char, i) => {
-        const start = i / characters.length;
-        const end = start + 0.1; // adjust this for overlap
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1]);
-
-        return (
-          <span key={i} className="relative inline-block">
-            <span className="invisible">{char === " " ? "\u00A0" : char}</span>
-            <motion.span
-              style={{ opacity }}
-              className="absolute left-0 top-0"
-            >
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
-          </span>
-        );
-      })}
+    <p ref={containerRef} className={`${className} flex flex-wrap`}>
+      {words.map((word, i) => (
+        <Word 
+          key={i} 
+          word={word} 
+          index={i} 
+          total={words.length} 
+          scrollYProgress={scrollYProgress} 
+        />
+      ))}
     </p>
   );
 };

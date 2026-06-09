@@ -183,12 +183,18 @@ export const SkillsLeetCodeSection = () => {
           fetch(`https://leetcode-api-faisalshohag.vercel.app/${leetcode_username}`),
           fetch(`https://alfa-leetcode-api.onrender.com/${leetcode_username}/contest`)
         ]);
+        let data: any = {};
+        let contestData: any = {};
+
+        if (statsRes.ok) {
+          try { data = await statsRes.json(); } catch(e) {}
+        }
+        if (contestRes.ok) {
+          try { contestData = await contestRes.json(); } catch(e) {}
+        }
         
-        const data = await statsRes.json();
-        const contestData = await contestRes.json();
-        
-        const totalSubmissions = data.matchedUserStats?.totalSubmissionNum.find((d: any) => d.difficulty === "All")?.submissions || 1;
-        const acSubmissions = data.matchedUserStats?.acSubmissionNum.find((d: any) => d.difficulty === "All")?.submissions || 0;
+        const totalSubmissions = data.matchedUserStats?.totalSubmissionNum?.find((d: any) => d.difficulty === "All")?.submissions || 1;
+        const acSubmissions = data.matchedUserStats?.acSubmissionNum?.find((d: any) => d.difficulty === "All")?.submissions || 0;
         
         const validParticipation = contestData.contestParticipation
           ? contestData.contestParticipation.filter((c: any) => c.attended).map((c: any) => ({

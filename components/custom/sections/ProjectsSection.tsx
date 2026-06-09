@@ -50,7 +50,7 @@ const ProjectCard = ({
     >
       <motion.div
         ref={cardRef}
-        style={{ scale }}
+        style={{ scale, willChange: "transform" }}
         className="w-full max-w-6xl h-full max-h-175 bg-white dark:bg-[#121311] border border-[#0e0f0c]/5 dark:border-white/5 shadow-2xl rounded-[24px] p-6 sm:p-10 flex flex-col origin-top overflow-hidden"
       >
         {/* Top Header */}
@@ -116,10 +116,10 @@ const ProjectCard = ({
               />
               <div className="absolute inset-0 bg-black/40" />
               <div className="absolute inset-x-5 bottom-5 flex items-center justify-between gap-3">
-                <span className="rounded-full bg-white/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-md border border-white/20">
+                <span className="rounded-full bg-black/60 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white border border-white/20">
                   {project.category}
                 </span>
-                <span className="rounded-full bg-white/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white backdrop-blur-md border border-white/20">
+                <span className="rounded-full bg-black/60 px-3 py-1.5 text-[11px] font-bold uppercase tracking-widest text-white border border-white/20">
                   {project.num}
                 </span>
               </div>
@@ -132,7 +132,7 @@ const ProjectCard = ({
             />
             <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end">
-              <div className="max-w-md rounded-[24px] border border-white/20 bg-black/40 p-6 backdrop-blur-xl text-white shadow-2xl">
+              <div className="max-w-md rounded-[24px] border border-white/20 bg-black/80 p-6 text-white shadow-xl">
                 <p className="text-[11px] font-bold uppercase tracking-[0.35em] text-[#054d28] dark:text-[#9fe870] mb-3">
                   About this project
                 </p>

@@ -25,6 +25,7 @@ export const FadeIn = ({
   return (
     <motion.div
       className={className}
+      style={{ willChange: "transform, opacity" }}
       initial={{ opacity: 0, x, y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once, margin: "50px", amount: 0.1 }}

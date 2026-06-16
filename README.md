@@ -14,19 +14,5 @@ This repository powers my personal portfolio—an interactive, "Wise-inspired" e
 - A dynamic `Project Estimator` for generating client quotes.
 - A `Tech Chemistry` 2D physics sandbox.
 
-## Local Setup
 
-First, install dependencies and run the development server:
 
-```bash
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
----
-
-<div align="center">
-  <b>Repo Link:</b> <a href="https://github.com/pandarudra/rudra.me">https://github.com/pandarudra/rudra.me</a>
-</div>

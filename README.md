@@ -1,4 +1,4 @@
-![Preview](<Screenshot from 2026-06-16 11-27-31.png>)
+![Preview](<media/preview.png>)
 ## About Me
 
 Hi! I'm **Rudra** (`pandarudra`), a passionate Software Developer and Open Source Contributor. I specialize in building fast, scalable, and beautifully designed web applications. I love tackling complex technical challenges, exploring new architectures (like physics-based UIs, game loops, and dynamic color theming), and continuously learning. 

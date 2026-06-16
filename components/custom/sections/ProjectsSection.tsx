@@ -44,7 +44,7 @@ const MobileProjectAccordion = ({
             {project.num}
           </span>
           <div className="flex flex-col">
-            <span className="text-[10px] font-bold tracking-widest uppercase text-[#054d28] dark:text-[#9fe870]">
+            <span className="text-[10px] font-bold tracking-widest uppercase accent-text">
               {project.category}
             </span>
             <span className="text-xl font-black text-[#0e0f0c] dark:text-white mt-1">
@@ -76,7 +76,12 @@ const MobileProjectAccordion = ({
               <Github className="size-4" />
               GitHub
             </a>
-            <a href={project.live} target="_blank" rel="noreferrer" className="flex-1 inline-flex h-11 items-center justify-center gap-2 rounded-[24px] bg-[#054d28] dark:bg-[#9fe870] text-[13px] font-bold text-white dark:text-[#0e0f0c] transition-all hover:bg-[#2ead4b] dark:hover:bg-[#cdffad] shadow-md">
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              className="flex-1 inline-flex h-11 items-center justify-center gap-2 rounded-[24px] accent-bg text-[13px] font-bold transition-all shadow-md"
+            >
               <ExternalLink className="size-4" />
               Live Site
             </a>
@@ -124,7 +129,7 @@ const ProjectCard = ({
               {project.num}
             </span>
             <div>
-              <p className="text-xs sm:text-sm font-bold tracking-widest uppercase text-[#054d28] dark:text-[#9fe870] mb-1">
+              <p className="text-xs sm:text-sm font-bold tracking-widest uppercase accent-text mb-1">
                 {project.category}
               </p>
               <h3 className="text-2xl sm:text-4xl font-black mb-1 sm:mb-2 text-[#0e0f0c] dark:text-white">
@@ -140,7 +145,12 @@ const ProjectCard = ({
               <Github className="size-3.5 sm:size-4" />
               GitHub
             </a>
-            <a href={project.live} target="_blank" rel="noreferrer" className="flex-1 md:flex-none inline-flex h-10 items-center justify-center gap-2 rounded-[24px] bg-[#054d28] dark:bg-[#9fe870] px-4 sm:px-5 text-[13px] sm:text-[14px] font-bold text-white dark:text-[#0e0f0c] transition-all hover:bg-[#2ead4b] dark:hover:bg-[#cdffad] shadow-lg shadow-[#054d28]/20 dark:shadow-[#9fe870]/20">
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              className="flex-1 md:flex-none inline-flex h-10 items-center justify-center gap-2 rounded-[24px] accent-bg px-4 sm:px-5 text-[13px] sm:text-[14px] font-bold transition-all shadow-lg"
+            >
               <ExternalLink className="size-3.5 sm:size-4" />
               Live
             </a>
@@ -197,7 +207,7 @@ const ProjectCard = ({
             <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 p-4 sm:p-8 flex flex-col justify-end">
               <div className="max-w-md rounded-[24px] border border-white/20 bg-black/80 p-5 sm:p-6 text-white shadow-xl">
-                <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.35em] text-[#054d28] dark:text-[#9fe870] mb-2 sm:mb-3">
+                <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.35em] accent-text mb-2 sm:mb-3">
                   About this project
                 </p>
                 <p className="text-sm sm:text-xl font-medium leading-relaxed text-white line-clamp-3 sm:line-clamp-none">
@@ -222,7 +232,7 @@ const ProjectCard = ({
               <DialogTitle className="text-3xl sm:text-4xl font-black text-[#0e0f0c] dark:text-white">
                 {project.name}
               </DialogTitle>
-              <DialogDescription className="text-[16px] font-bold uppercase tracking-widest text-[#054d28] dark:text-[#9fe870]">
+              <DialogDescription className="text-[16px] font-bold uppercase tracking-widest accent-text">
                 {project.category}
               </DialogDescription>
             </DialogHeader>
@@ -242,7 +252,12 @@ const ProjectCard = ({
                   <Github className="size-5" />
                   Open GitHub
                 </a>
-                <a href={project.live} target="_blank" rel="noreferrer" className="inline-flex h-12 items-center justify-center gap-2 rounded-[24px] bg-[#054d28] dark:bg-[#9fe870] px-5 text-[15px] font-bold text-white dark:text-[#0e0f0c] transition-all hover:bg-[#2ead4b] dark:hover:bg-[#cdffad] shadow-lg shadow-[#054d28]/20 dark:shadow-[#9fe870]/20">
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-[24px] accent-bg px-5 text-[15px] font-bold transition-all shadow-lg"
+                >
                   <ExternalLink className="size-5" />
                   Open Live Site
                 </a>

@@ -64,11 +64,12 @@ export const GithubSection = () => {
 
         <FadeIn delay={0.2} className="w-full flex flex-col items-center">
           <div className="mb-8 flex items-center gap-3">
-            <Calendar className="w-5 h-5 text-[#054d28] dark:text-[#9fe870]" />
+            <Calendar className="w-5 h-5 accent-text" />
             <select
               value={year}
               onChange={(e) => setYear(e.target.value === "last" ? "last" : Number(e.target.value))}
-              className="px-5 py-2.5 bg-[#e8ebe6] dark:bg-[#0e0f0c] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] focus:outline-none focus:ring-2 focus:ring-[#054d28]/50 dark:focus:ring-[#9fe870]/50 text-[14px] font-bold text-[#0e0f0c] dark:text-white appearance-none min-w-[130px] text-center cursor-pointer transition-colors"
+              className="px-5 py-2.5 bg-[#e8ebe6] dark:bg-[#0e0f0c] border border-[#0e0f0c]/5 dark:border-white/5 rounded-[24px] focus:outline-none focus:ring-2 text-[14px] font-bold text-[#0e0f0c] dark:text-white appearance-none min-w-[130px] text-center cursor-pointer transition-colors"
+              style={{ '--tw-ring-color': 'var(--ap)' } as React.CSSProperties}
             >
               <option value="last">Last Year</option>
               <option value="2025">2025</option>

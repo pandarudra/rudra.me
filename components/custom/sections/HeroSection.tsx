@@ -214,7 +214,7 @@ export const HeroSection = () => {
             <FadeIn y={40} delay={0.1}>
               <h1 className="text-6xl sm:text-7xl md:text-[100px] lg:text-[120px] font-black leading-[0.85] tracking-tight mb-8 text-[#0e0f0c] dark:text-white font-sans">
                 Hi, I’m{" "}
-                <span className="text-[#054d28] dark:text-[#9fe870]">
+                <span className="accent-text">
                   Rudra.
                 </span>
               </h1>
@@ -231,7 +231,7 @@ export const HeroSection = () => {
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-5 flex-wrap"
             >
               <a href="mailto:rudrapanda8206@gmail.com" className="w-full sm:w-auto">
-                <button className="w-full sm:w-auto group inline-flex h-14 items-center justify-center gap-2 rounded-[24px] bg-[#054d28] dark:bg-[#9fe870] px-8 text-[16px] font-bold text-white dark:text-[#0e0f0c] transition-all hover:bg-[#2ead4b] dark:hover:bg-[#cdffad] hover:scale-105 active:scale-95 shadow-lg shadow-[#054d28]/20 dark:shadow-[#9fe870]/20">
+                <button className="w-full sm:w-auto group inline-flex h-14 items-center justify-center gap-2 rounded-[24px] accent-bg px-8 text-[16px] font-bold transition-all hover:scale-105 active:scale-95 shadow-lg">
                   Get In Touch
                 </button>
               </a>

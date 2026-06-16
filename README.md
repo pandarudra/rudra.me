@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# rudra.me - Personal Portfolio
 
-## Getting Started
+```text
+================================================================================
+|                                                                              |
+|  [R]    About   Services   Experience   Projects   Explore   Contact   [☼/☽]|
+|                                                                              |
+================================================================================
+|                                                                              |
+|                                                                              |
+|         Hi, I am                                                             |
+|                                                                              |
+|         ██████╗ ██╗   ██╗██████╗ ██████╗  █████╗                             |
+|         ██╔══██╗██║   ██║██╔══██╗██╔══██╗██╔══██╗                            |
+|         ██████╔╝██║   ██║██║  ██║██████╔╝███████║                            |
+|         ██╔══██╗██║   ██║██║  ██║██╔══██╗██╔══██║                            |
+|         ██║  ██║╚██████╔╝██████╔╝██║  ██║██║  ██║                            |
+|         ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝                            |
+|                                                                              |
+|         Software Developer | Open Source Contributor | Tech Enthusiast       |
+|                                                                              |
+|         Building scalable backends and intelligent frontends.                |
+|                                                                              |
+|         [ Get In Touch ]     [ View Projects ]                               |
+|                                                                              |
+================================================================================
+|                                                                              |
+|  [ Services ]                                                                |
+|                                                                              |
+|  +--------------------+  +--------------------+  +--------------------+      |
+|  | Frontend Dev       |  | Backend Eng        |  | System Design      |      |
+|  | React, Next.js     |  | Node, Go, Rust     |  | Scalability & Cloud|      |
+|  +--------------------+  +--------------------+  +--------------------+      |
+|                                                                              |
+================================================================================
+|                                                                              |
+|  [ Experience & Projects ]                                                   |
+|                                                                              |
+|  > Building AI-driven products                                               |
+|  > Scaling web applications                                                  |
+|  > Open-source contributions                                                 |
+|                                                                              |
+================================================================================
+|                                                                              |
+|  [ Explore More ]                                                            |
+|                                                                              |
+|       ( Project Estimator ) --------+                                        |
+|                                     |                                        |
+|  ( Code Duel ) --------- ( Interactive Hub ) ---------- ( GitHub DevLog )    |
+|                                     |                                        |
+|      ( Tech Chemistry ) ------------+---------- ( Code Runner )              |
+|                                                                              |
+================================================================================
+|                                                                              |
+|  [ Let's Connect ]                                                           |
+|                                                                              |
+|  Email:       [___________________________]                                  |
+|  Message:     [___________________________]                                  |
+|               [___________________________]   [ Send Message ]               |
+|                                                                              |
+|  // Socials                                                                  |
+|  [GitHub]  [LinkedIn]  [X/Twitter]  [Email]                                  |
+|                                                                              |
+================================================================================
+```
 
-First, run the development server:
+## About Me
+
+Hi! I'm **Rudra** (`pandarudra`), a passionate Software Developer and Open Source Contributor. I specialize in building fast, scalable, and beautifully designed web applications. I love tackling complex technical challenges, exploring new architectures (like physics-based UIs, game loops, and dynamic color theming), and continuously learning. 
+
+This repository powers my personal portfolio—an interactive, "Wise-inspired" experience built with **Next.js 16**, **Tailwind CSS v4**, and **Framer Motion**. It features:
+- A dynamic, session-based accent color theme system.
+- An interactive `Code Runner` endless runner game.
+- A `Code Duel` rapid-fire tech quiz.
+- A real-time `GitHub DevLog` showcasing my latest commits.
+- A dynamic `Project Estimator` for generating client quotes.
+- A `Tech Chemistry` 2D physics sandbox.
+
+## Local Setup
+
+First, install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<div align="center">
+  <b>Repo Link:</b> <a href="https://github.com/pandarudra/rudra.me">https://github.com/pandarudra/rudra.me</a>
+</div>

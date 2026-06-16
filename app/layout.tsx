@@ -1,12 +1,14 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Header } from "@/components/custom/Header";
+import { HeaderConditional } from "@/components/custom/HeaderConditional";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeColor } from "@/components/custom/ThemeColor";
 import { AccentProvider } from "@/components/custom/AccentProvider";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,7 +66,7 @@ export default function RootLayout({
         >
           <AccentProvider>
             <ThemeColor />
-            <Header />
+            <HeaderConditional />
             {children}
             <Toaster />
           </AccentProvider>

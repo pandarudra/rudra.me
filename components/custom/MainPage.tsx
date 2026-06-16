@@ -7,6 +7,7 @@ import { SkillsLeetCodeSection } from "./sections/SkillsLeetCodeSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import { GithubSection } from "./sections/GithubSection";
 import { CertificatesSection } from "./sections/CertificatesSection";
+import { ExploreSection } from "./sections/ExploreSection";
 import { Footer } from "./ui/Footer";
 
 const MainPage = () => {
@@ -21,6 +22,7 @@ const MainPage = () => {
       <ProjectsSection />
       <GithubSection />
       <CertificatesSection />
+      <ExploreSection />
       <Footer />
     </main>
   );

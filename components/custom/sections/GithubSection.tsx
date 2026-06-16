@@ -5,11 +5,34 @@ import { FadeIn } from "../ui/FadeIn";
 import { GitHubCalendar } from "react-github-calendar";
 import { Calendar } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useAccentPalette } from "../AccentProvider";
+
+/**
+ * Generate a 5-stop color scale between two hex colors.
+ * Level 0 = base (near-transparent), Level 4 = full accent.
+ */
+function generateColorScale(base: string, accent: string): [string, string, string, string, string] {
+  const hexToRgb = (hex: string) => {
+    const h = hex.replace("#", "");
+    return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
+  };
+  const rgbToHex = (r: number, g: number, b: number) =>
+    "#" + [r, g, b].map((v) => Math.round(v).toString(16).padStart(2, "0")).join("");
+
+  const [br, bg, bb] = hexToRgb(base);
+  const [ar, ag, ab] = hexToRgb(accent);
+
+  const mix = (t: number) =>
+    rgbToHex(br + (ar - br) * t, bg + (ag - bg) * t, bb + (ab - bb) * t);
+
+  return [base, mix(0.25), mix(0.5), mix(0.75), accent];
+}
 
 export const GithubSection = () => {
   const [year, setYear] = useState<number | "last">("last");
   const [mounted, setMounted] = useState(false);
   const { theme, resolvedTheme } = useTheme();
+  const palette = useAccentPalette();
 
   const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,6 +72,12 @@ export const GithubSection = () => {
   }, [mounted, year]); // Recalculate if year changes (in case widget dimensions shift)
 
   const calendarTheme = mounted && (resolvedTheme || theme) === "light" ? "light" : "dark";
+
+  // Build accent-aware color theme for the heatmap
+  const heatmapTheme = {
+    light: generateColorScale("#e8ebe6", palette.accentLight),
+    dark: generateColorScale("#161b22", palette.accentDark),
+  };
 
   return (
     <section className="bg-white dark:bg-[#121311] py-24 px-6 relative z-20 border-t border-[#0e0f0c]/5 dark:border-white/5 transition-colors duration-300">
@@ -99,6 +128,7 @@ export const GithubSection = () => {
                   <GitHubCalendar
                     username="pandarudra"
                     colorScheme={calendarTheme}
+                    theme={heatmapTheme}
                     year={year}
                     blockSize={15}
                     blockMargin={6}
@@ -115,4 +145,3 @@ export const GithubSection = () => {
     </section>
   );
 };
-
